@@ -160,6 +160,14 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.9', donde: "(x^√x)' en x = 4", izq: 'f(x) = x^sqrt(x); (f(4 + 1e-6) - f(4 - 1e-6))/2e-6', der: '16 * (log(4) + 2)/4' },
   { entrada: '3.9', donde: "Ejemplo (xˣ)'(2) = 4(ln 2 + 1)", izq: '(2.0001^2.0001 - 1.9999^1.9999)/0.0002', der: '4 * (log(2) + 1)' },
   { entrada: '3.9', donde: 'mínimo de xˣ en 1/e', izq: 'log(1/e) + 1', der: '0' },
+  // 3.10 (segundas derivadas con diferencias centradas)
+  { entrada: '3.10', donde: "f'' de 2x⁵ − x³ + 4x en x = 1", izq: 'f(x) = 2x^5 - x^3 + 4x; (f(1 + 1e-4) - 2 f(1) + f(1 - 1e-4))/1e-8', der: '40 - 6' },
+  { entrada: '3.10', donde: "f'' de √(1+x²) en x = 1", izq: 'f(x) = sqrt(1 + x^2); (f(1 + 1e-4) - 2 f(1) + f(1 - 1e-4))/1e-8', der: '1/2^(3/2)' },
+  { entrada: '3.10', donde: "f'' de 1/(1−x) en x = 0 (= 2!)", izq: 'f(x) = 1/(1 - x); (f(1e-4) - 2 f(0) + f(-1e-4))/1e-8', der: '2' },
+  { entrada: '3.10', donde: "f'' de x eˣ en x = 0 (= 2)", izq: 'f(x) = x exp(x); (f(1e-4) - 2 f(0) + f(-1e-4))/1e-8', der: '(0 + 2) exp(0)' },
+  { entrada: '3.10', donde: 'Ejemplo s(1) = 5', izq: '2 - 9 + 12', der: '5' },
+  { entrada: '3.10', donde: 'Ejemplo a(t) = s\'\'(t) en t = 1', izq: 's(t) = 2t^3 - 9t^2 + 12t; (s(1 + 1e-4) - 2 s(1) + s(1 - 1e-4))/1e-8', der: '-6' },
+  { entrada: '3.10', donde: 'Ejemplo v(1,4) = −1,44', izq: '6 (1.4 - 1)(1.4 - 2)', der: '-1.44' },
   // FIN
 ]
 

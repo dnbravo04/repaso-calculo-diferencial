@@ -103,3 +103,15 @@ No hay coincidencias: ningún ejemplo ni ejercicio de práctica usa la misma fun
 - Cada push a `main` corre las pruebas y el build en GitHub Actions y, si todo pasa, vuelve a publicar. Si una prueba falla, el sitio se queda en la versión anterior.
 - `CLAUDE.md`, `bitacora-extendida-contenido.md` y `referencia/` **no** están en el repositorio (tienen datos personales o material del curso). Siguen en tu disco; git los ignora.
 - **Ojo con el progreso:** el semáforo, el cuaderno y "Dilo con tus palabras" se guardan por sitio. Lo que marques en `localhost` no aparece en `github.io`. Para pasarlo, usa **Mi progreso → Descargar progreso (JSON)** en uno e **Importar** en el otro.
+
+## Gráficas en las explicaciones — 21 de noviembre
+
+- **19 gráficas fijas nuevas**, en las 14 entradas que no tenían ninguna (Parte 0, Parte T, 1.1, 1.3, 1.5, 2.1, 3.3, 3.4, 3.5, 3.6, 3.7, 3.9, 4.2, 4.8). Como en las fases 3 y 4, todas usan funciones que ya estaban en la entrada, ninguna es un ejercicio del taller, y cada una trae su descripción en palabras.
+- **4 gráficas interactivas** (bloques ```interactivo):
+  - Parte T, T.2: circunferencia unitaria con la onda del seno al lado y los valores exactos de los ángulos notables.
+  - 2.1, Método 3: dos puntos que se acercan a $x = 2$ por cada lado en $\tfrac{x^2 + x - 6}{x - 2}$.
+  - 3.1, Método 1: la tangente a $x^3 - 2x$ y la gráfica de la derivada que se va dibujando.
+  - 3.1, Ejemplo: la secante de $\sqrt{x + 3}$ que se vuelve tangente cuando $h \to 0$.
+- Las pruebas comprueban que cada límite, cada derivada y cada valor exacto del círculo coincidan con el cálculo numérico.
+- Nueva opción `"proporcional": true` para que los círculos se vean redondos (1.1, semicircunferencia; 4.2, escalera).
+- En 1.1 y 4.8, el gris punteado marca una recta de referencia ($y = 5$, $y = \tfrac{1}{2}$), no una función original.

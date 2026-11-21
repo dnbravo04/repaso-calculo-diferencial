@@ -23,7 +23,7 @@ export default function LienzoMafs({ g }: { g: GraficaSpec }) {
   return (
     <Mafs
       viewBox={{ x: [x0, x1], y: [y0, y1], padding: 0.25 }}
-      preserveAspectRatio={false}
+      preserveAspectRatio={g.proporcional ? 'contain' : false}
       height={g.alto ?? 320}
       pan={false}
       zoom={false}

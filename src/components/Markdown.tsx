@@ -9,6 +9,7 @@ import { KATEX_MACROS } from '../lib/katex'
 
 // Mafs y mathjs pesan; se cargan solo cuando una entrada trae una gráfica.
 const Grafica = lazy(() => import('./Grafica'))
+const Interactivo = lazy(() => import('./interactivos/Interactivo'))
 
 const remarkPlugins = [remarkGfm, remarkMath, remarkDirective, remarkPaso]
 const rehypePlugins: Parameters<typeof ReactMarkdown>[0]['rehypePlugins'] = [
@@ -39,6 +40,13 @@ export default function Markdown({ children }: { children: string }) {
             return (
               <Suspense fallback={<div className="my-6 h-80 animate-pulse rounded-xl bg-stone-200/60 dark:bg-stone-800" />}>
                 <Grafica json={textoDe(code)} />
+              </Suspense>
+            )
+          }
+          if (code && Array.isArray(clases) && clases.includes('language-interactivo')) {
+            return (
+              <Suspense fallback={<div className="my-6 h-96 animate-pulse rounded-xl bg-stone-200/60 dark:bg-stone-800" />}>
+                <Interactivo json={textoDe(code)} />
               </Suspense>
             )
           }

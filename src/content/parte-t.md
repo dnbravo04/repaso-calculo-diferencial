@@ -43,6 +43,13 @@ $$
 Las otras cuatro funciones se definen a partir de seno y coseno. Cada una existe solo donde su denominador no vale $0$.
 :::
 
+```interactivo
+{
+  "tipo": "circulo-unitario",
+  "descripcion": "A la izquierda está la circunferencia unitaria $x^2 + y^2 = 1$; a la derecha, la gráfica de $y = \\operatorname{sen} x$ con $x$ en radianes. Arrastra el punto verde o usa el deslizador: el segmento azul mide $\\cos\\theta$ (la $x$ del punto) y el naranja mide $\\operatorname{sen}\\theta$ (la $y$ del punto). La misma altura naranja aparece a la derecha, encima del ángulo $\\theta$, y va dibujando la onda del seno. Fíjate en el signo de cada segmento al cambiar de cuadrante (T.4) y prueba los ángulos notables: debajo salen sus valores exactos (T.3)."
+}
+```
+
 ### Idea en palabras
 
 Metáfora (de T.2): imagina un personaje que da vueltas en una pista circular de radio $1$, saliendo del punto $(1, 0)$ y girando contra las manecillas del reloj. Su sombra sobre el piso (eje $x$) es el coseno; su altura (eje $y$) es el seno.
@@ -135,6 +142,101 @@ Aquí $k$ es cualquier entero. Las filas de $\cot$, $\sec$ y $\csc$ son el TF 56
 - **Imagen de $\sec$ y $\csc$**: si $|\cos x| \leq 1$, ¿qué pasa con $\left|\tfrac{1}{\cos x}\right|$? Piensa qué valores entre $-1$ y $1$ nunca puede tomar.
 - **Paridad**: hereda la de su denominador.
 - **Ceros**: una fracción vale $0$ solo si su numerador vale $0$. ¿Cuál es el numerador de $\sec$?
+
+```grafica
+{
+  "funciones": [
+    {
+      "expr": "sin(x)",
+      "color": "azul",
+      "etiqueta": "$y = \\operatorname{sen} x$"
+    },
+    {
+      "expr": "cos(x)",
+      "color": "naranja",
+      "etiqueta": "$y = \\cos x$"
+    }
+  ],
+  "puntos": [
+    {
+      "x": "pi/2",
+      "y": 1,
+      "color": "azul",
+      "etiqueta": "\\left(\\tfrac{\\pi}{2}, 1\\right)",
+      "posicion": "n"
+    },
+    {
+      "x": "pi",
+      "y": -1,
+      "color": "naranja",
+      "etiqueta": "(\\pi, -1)",
+      "posicion": "s"
+    }
+  ],
+  "vista": {
+    "x": [
+      "-2*pi",
+      "2*pi"
+    ],
+    "y": [
+      -1.6,
+      1.6
+    ]
+  },
+  "radianes": true,
+  "descripcion": "El eje horizontal es el ángulo $x$ en radianes, marcado cada $\\tfrac{\\pi}{2}$, y el vertical es el valor. La curva azul es $y = \\operatorname{sen} x$ y la naranja es $y = \\cos x$. Las dos ondulan entre $-1$ y $1$ y se repiten cada $2\\pi$. El seno es impar: pasa por el origen y la mitad izquierda es la derecha girada media vuelta. El coseno es par: vale $1$ en $x = 0$ y es simétrico respecto al eje $y$. El coseno es el seno corrido $\\tfrac{\\pi}{2}$ hacia la izquierda: el máximo del seno en $\\left(\\tfrac{\\pi}{2}, 1\\right)$ llega $\\tfrac{\\pi}{2}$ después que el del coseno en $(0, 1)$. Las dos tienen dominio $\\mathbb{R}$ e imagen $[-1, 1]$."
+}
+```
+
+```grafica
+{
+  "funciones": [
+    {
+      "expr": "tan(x)",
+      "color": "azul",
+      "etiqueta": "$y = \\tan x$"
+    }
+  ],
+  "asintotas": [
+    {
+      "tipo": "vertical",
+      "valor": "-3*pi/2"
+    },
+    {
+      "tipo": "vertical",
+      "valor": "-pi/2"
+    },
+    {
+      "tipo": "vertical",
+      "valor": "pi/2"
+    },
+    {
+      "tipo": "vertical",
+      "valor": "3*pi/2"
+    }
+  ],
+  "puntos": [
+    {
+      "x": "pi/4",
+      "y": 1,
+      "etiqueta": "\\left(\\tfrac{\\pi}{4}, 1\\right)",
+      "posicion": "e"
+    }
+  ],
+  "vista": {
+    "x": [
+      "-2*pi",
+      "2*pi"
+    ],
+    "y": [
+      -4,
+      4
+    ]
+  },
+  "radianes": true,
+  "descripcion": "El eje horizontal es el ángulo $x$ en radianes y el vertical es el valor. La curva azul es $y = \\tan x = \\tfrac{\\operatorname{sen} x}{\\cos x}$. Donde $\\cos x = 0$, en $x = \\tfrac{\\pi}{2} + k\\pi$, la fracción no existe y aparecen asíntotas verticales (líneas punteadas): cerca de ellas la curva sube o baja sin límite. Entre dos asíntotas la curva siempre crece, y la misma forma se repite cada $\\pi$, no cada $2\\pi$. Pasa por el origen y es impar, como el seno. En $x = \\tfrac{\\pi}{4}$ vale $1$, porque ahí seno y coseno son iguales. Dominio: $x \\neq \\tfrac{\\pi}{2} + k\\pi$; imagen: $\\mathbb{R}$."
+}
+```
 
 #### T.6 Identidades fundamentales
 
@@ -334,6 +436,49 @@ x = \pi - \frac{\pi}{6} = \frac{5\pi}{6} \qquad x = \pi + \frac{\pi}{6} = \frac{
 $$
 Paso 5: en el cuadrante II se resta la referencia de $\pi$; en el III se suma. Todas las soluciones: $\tfrac{5\pi}{6} + 2k\pi$ y $\tfrac{7\pi}{6} + 2k\pi$.
 :::
+
+```grafica
+{
+  "funciones": [
+    {
+      "expr": "cos(x)",
+      "color": "azul",
+      "etiqueta": "$y = \\cos x$"
+    },
+    {
+      "expr": "-sqrt(3)/2",
+      "color": "naranja",
+      "etiqueta": "$y = -\\tfrac{\\sqrt{3}}{2}$"
+    }
+  ],
+  "puntos": [
+    {
+      "x": "5*pi/6",
+      "y": "-sqrt(3)/2",
+      "etiqueta": "\\tfrac{5\\pi}{6}",
+      "posicion": "so"
+    },
+    {
+      "x": "7*pi/6",
+      "y": "-sqrt(3)/2",
+      "etiqueta": "\\tfrac{7\\pi}{6}",
+      "posicion": "se"
+    }
+  ],
+  "vista": {
+    "x": [
+      0,
+      "2*pi"
+    ],
+    "y": [
+      -1.5,
+      1.5
+    ]
+  },
+  "radianes": true,
+  "descripcion": "El eje horizontal es el ángulo $x$ en radianes, de $0$ a $2\\pi$, y el vertical es el valor. La curva azul es $y = \\cos x$ y la recta naranja es $y = -\\tfrac{\\sqrt{3}}{2} \\approx -0{,}87$. Resolver $2\\cos x + \\sqrt{3} = 0$ es buscar dónde se cortan: en $x = \\tfrac{5\\pi}{6}$ (cuadrante II) y en $x = \\tfrac{7\\pi}{6}$ (cuadrante III), simétricos respecto a $x = \\pi$, donde el coseno toca su mínimo $-1$. En $[0, 2\\pi)$ no hay más cortes. El coseno tiene dominio $\\mathbb{R}$ e imagen $[-1, 1]$; como $-\\tfrac{\\sqrt{3}}{2}$ está en esa imagen, hay solución."
+}
+```
 
 **Ejemplo tipo cuadrática.** $2\cos^2 x + \cos x - 1 = 0$ en $[0, 2\pi)$.
 

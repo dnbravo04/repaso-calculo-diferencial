@@ -46,6 +46,8 @@ export interface GraficaSpec {
   ejes?: { x?: string; y?: string }
   radianes?: boolean
   alto?: number
+  /** Misma escala en los dos ejes (círculos que se ven redondos). */
+  proporcional?: boolean
   descripcion: string
 }
 

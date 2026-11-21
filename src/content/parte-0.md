@@ -129,6 +129,43 @@ $$
 Reemplazamos en la fórmula: $-b = 7$ y $\sqrt{25} = 5$. Con $+$ da $\tfrac{12}{4} = 3$; con $-$ da $\tfrac{2}{4} = \tfrac{1}{2}$. Comprobación por factorización: $(2x - 1)(x - 3) = 2x^2 - 7x + 3$.
 :::
 
+```grafica
+{
+  "funciones": [
+    {
+      "expr": "2x^2 - 7x + 3",
+      "color": "azul",
+      "etiqueta": "$y = 2x^2 - 7x + 3$"
+    }
+  ],
+  "puntos": [
+    {
+      "x": 0.5,
+      "y": 0,
+      "etiqueta": "\\tfrac{1}{2}",
+      "posicion": "no"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "etiqueta": "3",
+      "posicion": "ne"
+    }
+  ],
+  "vista": {
+    "x": [
+      -1,
+      4.5
+    ],
+    "y": [
+      -4,
+      6
+    ]
+  },
+  "descripcion": "El eje horizontal es $x$ y el vertical es $y$. La curva azul es la parábola $y = 2x^2 - 7x + 3$. Resolver $2x^2 - 7x + 3 = 0$ es buscar dónde la curva corta el eje horizontal, porque ahí $y = 0$: en $x = \\tfrac{1}{2}$ y en $x = 3$, las dos soluciones. Como $\\Delta = 25 > 0$, hay dos cortes; con $\\Delta = 0$ la parábola apenas tocaría el eje y con $\\Delta < 0$ no lo tocaría. Se lee $\\operatorname{Dom} = \\mathbb{R}$ e $\\operatorname{Img} = \\left[-\\tfrac{25}{8}, \\infty\\right)$, pues el vértice está en $\\left(\\tfrac{7}{4}, -\\tfrac{25}{8}\\right)$."
+}
+```
+
 **Ejemplo completando el cuadrado.** $x^2 + 6x + 2 = 0$.
 
 :::paso
@@ -238,6 +275,56 @@ x = 9 \;\text{ o }\; x = 2
 $$
 Un producto es $0$ solo si algún factor es $0$. Pero $x = 2$ incumple $x \geq 5$; en la original da $\sqrt{9} = 3$ frente a $-3$. La única solución es $x = 9$: $\sqrt{16} = 4 = 9 - 5$.
 :::
+
+```grafica
+{
+  "funciones": [
+    {
+      "expr": "sqrt(x + 7)",
+      "color": "azul",
+      "etiqueta": "$y = \\sqrt{x + 7}$"
+    },
+    {
+      "expr": "x - 5",
+      "color": "naranja",
+      "etiqueta": "$y = x - 5$"
+    }
+  ],
+  "puntos": [
+    {
+      "x": 9,
+      "y": 4,
+      "etiqueta": "(9, 4)",
+      "posicion": "no"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "color": "azul",
+      "etiqueta": "(2, 3)",
+      "posicion": "n"
+    },
+    {
+      "x": 2,
+      "y": -3,
+      "color": "naranja",
+      "etiqueta": "(2, -3)",
+      "posicion": "e"
+    }
+  ],
+  "vista": {
+    "x": [
+      -8,
+      12
+    ],
+    "y": [
+      -6,
+      6
+    ]
+  },
+  "descripcion": "El eje horizontal es $x$ y el vertical es $y$. La curva azul es $y = \\sqrt{x + 7}$, que empieza en $(-7, 0)$ y nunca baja del eje; la recta naranja es $y = x - 5$. Las soluciones de $\\sqrt{x + 7} = x - 5$ son los cortes entre las dos: hay uno solo, en $(9, 4)$. El candidato falso $x = 2$ se ve en la gráfica: ahí la raíz vale $3$ y la recta vale $-3$, dos puntos distintos. Elevar al cuadrado los volvió iguales porque $3^2 = (-3)^2$. La raíz tiene dominio $[-7, \\infty)$ e imagen $[0, \\infty)$; la recta, dominio e imagen $\\mathbb{R}$."
+}
+```
 
 #### 0.8 Valor absoluto
 

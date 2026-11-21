@@ -197,6 +197,16 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.2', donde: 'sombra ds/dt', izq: '3/7 * 1.2', der: '0.5143' },
   { entrada: '4.2', donde: 'Ejemplo dh/dt', izq: '0.08/(9 pi)', der: '0.0028294' },
   { entrada: '4.2', donde: 'Ejemplo: caudal de vuelta', izq: 'pi 9/4 * 0.08/(9 pi)', der: '0.02' },
+  // 4.3
+  { entrada: '4.3', donde: 'f(−1) = 7', izq: '(-1)^3 - 3(-1)^2 - 9(-1) + 2', der: '7' },
+  { entrada: '4.3', donde: 'f(3) = −25', izq: '3^3 - 3*3^2 - 9*3 + 2', der: '-25' },
+  { entrada: '4.3', donde: 'f(4) = −18', izq: '4^3 - 3*4^2 - 9*4 + 2', der: '-18' },
+  { entrada: '4.3', donde: "f'(−1) = 0", izq: 'f(x) = x^3 - 3x^2 - 9x + 2; (f(-1 + 1e-6) - f(-1 - 1e-6))/2e-6', der: '0' },
+  { entrada: '4.3', donde: 'cero (5 − √21)/2', izq: 'x = (5 - sqrt(21))/2; x^3 - 3x^2 - 9x + 2', der: '0' },
+  { entrada: '4.3', donde: 'g(2) = 2 − 2 ln 2', izq: '2 - 2 log(2)', der: '0.6137' },
+  { entrada: '4.3', donde: 'Ejemplo f(3) = −17', izq: '3^4 - 4*3^3 + 10', der: '-17' },
+  { entrada: '4.3', donde: 'Ejemplo f(2,9) > −17', izq: 'round(2.9^4 - 4*2.9^3 + 10, 2)', der: '-16.83' },
+  { entrada: '4.3', donde: 'Ejemplo cero ≈ 1,6118', izq: 'round(1.6118^4 - 4*1.6118^3 + 10, 2)', der: '0' },
   // FIN
 ]
 

@@ -69,6 +69,13 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '2.3', donde: 'sen(x−1)/(x²−1)', izq: 'f(x) = sin(x - 1)/(x^2 - 1); f(1 + 1e-6)', der: '1/2' },
   { entrada: '2.3', donde: '(1−cos x)/sen x', izq: '(1 - cos(1e-4))/sin(1e-4)', der: '0' },
   { entrada: '2.3', donde: 'Ejemplo (x + tan2x)/sen3x', izq: 'f(x) = (x + tan(2x))/sin(3x); f(1e-4)', der: '1' },
+  // 2.4
+  { entrada: '2.4', donde: 'parámetro c = 2/3', izq: '4*(2/3) + 4', der: '8 - 2*(2/3)' },
+  { entrada: '2.4', donde: 'lím √(x²+3), x→1', izq: 'sqrt(1^2 + 3)', der: '2' },
+  { entrada: '2.4', donde: 'lím cos(x + sen x), x→π', izq: 'cos(pi + sin(pi))', der: '-1' },
+  { entrada: '2.4', donde: 'bisección f(0,75)', izq: '0.75^3 + 0.75 - 1', der: '0.171875' },
+  { entrada: '2.4', donde: 'raíz de x³+x−1 en (0,625; 0,75)', izq: 'f(x) = x^3 + x - 1; f(0.625) * f(0.75) < 0', der: '1' },
+  { entrada: '2.4', donde: 'removible: lím en 2', izq: 'f(x) = (x^2 - 4)/(x^2 - x - 2); f(2 + 1e-6)', der: '4/3' },
   // FIN
 ]
 

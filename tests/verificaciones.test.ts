@@ -130,6 +130,15 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.5', donde: 'tangente horizontal en π/4', izq: 'cos(pi/4) - sin(pi/4)', der: '0' },
   { entrada: '3.5', donde: 'Ejemplo y\'(0) = 1', izq: 'f(x) = sin(2x)/(1 + cos(x)); (f(0.0001) - f(-0.0001))/0.0002', der: '1' },
   { entrada: '3.5', donde: "Ejemplo y'(π/2) = −2", izq: 'f(x) = sin(2x)/(1 + cos(x)); (f(pi/2 + 1e-6) - f(pi/2 - 1e-6))/2e-6', der: '-2' },
+  // 3.6
+  { entrada: '3.6', donde: "(x e^{−2x})' en x = 1", izq: 'f(x) = x exp(-2x); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '(1 - 2) exp(-2)' },
+  { entrada: '3.6', donde: "(2^{3x+1})' en x = 0", izq: 'f(x) = 2^(3x + 1); (f(1e-6) - f(-1e-6))/2e-6', der: '3 log(2) * 2' },
+  { entrada: '3.6', donde: "(log₃ 5x)' en x = 2", izq: 'f(x) = log(5x)/log(3); (f(2 + 1e-6) - f(2 - 1e-6))/2e-6', der: '1/(2 log(3))' },
+  { entrada: '3.6', donde: 'ln((2x+1)⁵/√(x²+1))\' en x = 1', izq: 'f(x) = log((2x + 1)^5/sqrt(x^2 + 1)); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '10/3 - 1/2' },
+  { entrada: '3.6', donde: "(ln|cos x|)' en x = 2", izq: 'f(x) = log(abs(cos(x))); (f(2 + 1e-6) - f(2 - 1e-6))/2e-6', der: '-tan(2)' },
+  { entrada: '3.6', donde: "T'(0) = −3,5 K/s", izq: 'T(t) = 293 + 70 exp(-0.05t); (T(1e-6) - T(-1e-6))/2e-6', der: '-3.5' },
+  { entrada: '3.6', donde: "T'(t) = −1 en t = ln(3,5)/0,05", izq: '-3.5 exp(-0.05 * log(3.5)/0.05)', der: '-1' },
+  { entrada: '3.6', donde: "Ejemplo y'(1) = e(ln 2 + 1)", izq: 'f(x) = exp(x) log(x^2 + 1); (f(1.0001) - f(0.9999))/0.0002', der: 'e * (log(2) + 1)' },
   // FIN
 ]
 

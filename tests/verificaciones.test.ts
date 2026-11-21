@@ -188,6 +188,15 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.1', donde: 'Δy de x³', izq: '2.1^3 - 8', der: '1.261' },
   { entrada: '4.1', donde: 'Ejemplo ∛8,06 real', izq: 'round(cbrt(8.06), 7)', der: '2.0049917' },
   { entrada: '4.1', donde: 'Ejemplo 2,005³', izq: 'round(2.005^3, 5)', der: '8.06015' },
+  // 4.2
+  { entrada: '4.2', donde: 'escalera: dy/dt', izq: '-3/4 * 0.3', der: '-0.225' },
+  { entrada: '4.2', donde: 'escalera: comprobación con y(t)', izq: 'y(t) = sqrt(25 - (3 + 0.3t)^2); (y(1e-6) - y(-1e-6))/2e-6', der: '-0.225' },
+  { entrada: '4.2', donde: 'riego dA/dt', izq: '2 pi 3 * 0.2', der: '1.2 pi' },
+  { entrada: '4.2', donde: 'Boyle dP/dt', izq: '-(1e5/0.5) * (-0.01)', der: '2000' },
+  { entrada: '4.2', donde: 'sombra s = 3x/7', izq: 'x = 10; s = 3/7 x; s/1.8 - (x + s)/6', der: '0' },
+  { entrada: '4.2', donde: 'sombra ds/dt', izq: '3/7 * 1.2', der: '0.5143' },
+  { entrada: '4.2', donde: 'Ejemplo dh/dt', izq: '0.08/(9 pi)', der: '0.0028294' },
+  { entrada: '4.2', donde: 'Ejemplo: caudal de vuelta', izq: 'pi 9/4 * 0.08/(9 pi)', der: '0.02' },
   // FIN
 ]
 

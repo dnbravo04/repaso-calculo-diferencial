@@ -148,6 +148,13 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.7', donde: "Ejemplo y'(1/2) = 2", izq: 'f(x) = asin(2x - 1); (f(0.5001) - f(0.4999))/0.0002', der: '2' },
   { entrada: '3.7', donde: 'Trampa: 1/√0,75', izq: '1/sqrt(0.75)', der: '1.1547' },
   { entrada: '3.7', donde: 'Trampa: −csc(0,5)cot(0,5) ≈ −3,82', izq: 'round(-csc(0.5) cot(0.5), 2)', der: '-3.82' },
+  // 3.8
+  { entrada: '3.8', donde: 'tangente a la circunferencia pasa por (3,4)', izq: '-3/4*3 + 25/4', der: '4' },
+  { entrada: '3.8', donde: "pendiente −3/4 = derivada de √(25−x²) en 3", izq: 'f(x) = sqrt(25 - x^2); (f(3 + 1e-6) - f(3 - 1e-6))/2e-6', der: '-3/4' },
+  { entrada: '3.8', donde: "y'' = −25/y³ = derivada segunda de √(25−x²) en 3", izq: 'f(x) = sqrt(25 - x^2); (f(3 + 1e-4) - 2 f(3) + f(3 - 1e-4))/1e-8', der: '-25/64' },
+  { entrada: '3.8', donde: 'x e^y = y + 2 en (2, 0)', izq: '2 exp(0)', der: '0 + 2' },
+  { entrada: '3.8', donde: 'folio en (3,3)', izq: '3^3 + 3^3', der: '6*3*3' },
+  { entrada: '3.8', donde: 'folio: y ≈ 2,98973 cumple la ecuación en x = 3,01', izq: 'y = 2.989726; y^3 - 6*3.01*y + 3.01^3', der: '0' },
   // FIN
 ]
 

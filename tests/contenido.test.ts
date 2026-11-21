@@ -47,9 +47,11 @@ describe('los detectores funcionan (control negativo)', () => {
     expect(textoSinFormulas('Sea x² ≤ 4 y $x^2 \\leq 4$.')).toMatch(/²/)
     expect(textoSinFormulas('Sea $x^2 \\leq 4$ y $$\\sqrt{x}$$.')).not.toMatch(/\\leq|sqrt/)
   })
-  it('el documento exportado original sí tiene texto plano (lo que se convirtió)', () => {
-    const original = readFileSync(join(__dirname, '..', 'bitacora-extendida-contenido.md'), 'utf8')
-    expect(textoSinFormulas(original)).toMatch(/[²√≤π]/)
+  it('detecta el estilo del documento exportado original (texto plano sin convertir)', () => {
+    // Muestra con el formato que traía el documento antes de la Fase 1.
+    const original = 'Ejemplo. √(x + 7) = x − 5, con x ≥ 5. Img(sen) = \\[−1, 1\\] y x² ≤ π.'
+    expect(textoSinFormulas(original)).toMatch(/[²√≤≥π−]/)
+    expect(textoSinFormulas(original)).toMatch(/\\\[/)
   })
   it('extrae fórmulas en línea y en bloque', () => {
     const f = extraerFormulas('a $x$ b\n\n$$\ny\n$$\n')

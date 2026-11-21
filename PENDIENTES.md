@@ -60,7 +60,7 @@ Regla aplicada:
 - **Explorador**: $A$ y $B$ van de $-4$ a $4$ en pasos de $\tfrac{1}{4}$ (se saltan el $0$); $C$ y $D$ en pasos de $\tfrac{1}{2}$. Con seno y coseno, $C$ va en pasos de $\tfrac{\pi}{4}$ para que los valores sigan siendo exactos.
 - **Peso**: Mafs y mathjs (~360 kB comprimidos) se descargan solo al abrir una entrada con gráfica o el explorador.
 
-## Fase 4 — decisiones para revisar
+## Fase 4 — revisada el 20 de noviembre (✅ todo aceptado tal como está)
 
 ### Regla 1: cómo se comparó cada entrada con su taller
 

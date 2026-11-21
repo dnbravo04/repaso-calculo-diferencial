@@ -207,6 +207,13 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.3', donde: 'Ejemplo f(3) = −17', izq: '3^4 - 4*3^3 + 10', der: '-17' },
   { entrada: '4.3', donde: 'Ejemplo f(2,9) > −17', izq: 'round(2.9^4 - 4*2.9^3 + 10, 2)', der: '-16.83' },
   { entrada: '4.3', donde: 'Ejemplo cero ≈ 1,6118', izq: 'round(1.6118^4 - 4*1.6118^3 + 10, 2)', der: '0' },
+  // 4.4
+  { entrada: '4.4', donde: 'Rolle: f(0) = f(4)', izq: '0^2 - 4*0 + 1', der: '4^2 - 4*4 + 1' },
+  { entrada: '4.4', donde: "TVM x³: f'(√3) = 9", izq: '3 * sqrt(3)^2', der: '(27 - 0)/3' },
+  { entrada: '4.4', donde: 'raíz única: f(−1) < 0 < f(0)', izq: 'f(x) = x^3 + 4x + 1; f(-1) * f(0) < 0', der: '1' },
+  { entrada: '4.4', donde: 'tractor 15 m/s', izq: '180/12', der: '15' },
+  { entrada: '4.4', donde: "Ejemplo f'(9) = 1/6", izq: 'f(x) = sqrt(x); (f(9 + 1e-6) - f(9 - 1e-6))/2e-6', der: '(4 - 2)/(16 - 4)' },
+  { entrada: '4.4', donde: 'Ejemplo tangente en 16', izq: '3 + (16 - 9)/6', der: '25/6' },
   // FIN
 ]
 

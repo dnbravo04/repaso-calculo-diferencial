@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { acciones, useGuardadoOk, useProgreso } from '../lib/almacen'
+import { useCuenta } from '../lib/cuenta'
 import { INDICE } from '../lib/indice'
 import { SEMAFOROS, estadoDe, exportar, fechaLocal, importar, serieDiaria } from '../lib/progreso'
 import GraficaProgreso from './GraficaProgreso'
@@ -7,6 +8,7 @@ import GraficaProgreso from './GraficaProgreso'
 export default function MiProgreso() {
   const progreso = useProgreso()
   const guardadoOk = useGuardadoOk()
+  const cuenta = useCuenta()
   const archivo = useRef<HTMLInputElement>(null)
   const [mensaje, setMensaje] = useState<{ tipo: 'ok' | 'error'; texto: string } | null>(null)
 
@@ -39,7 +41,7 @@ export default function MiProgreso() {
       const nuevo = importar(await f.text())
       const n = Object.keys(nuevo.entradas).length
       const ok = window.confirm(
-        `Vas a reemplazar el progreso de este navegador por el del archivo (${n} entradas, ${nuevo.historial.length} registros). ¿Sigo?`,
+        `Vas a reemplazar el progreso de este navegador (y el de la nube, si entraste) por el del archivo (${n} entradas, ${nuevo.historial.length} registros). ¿Sigo?`,
       )
       if (!ok) return
       acciones.reemplazar(nuevo)
@@ -96,7 +98,9 @@ export default function MiProgreso() {
       <section className="mt-10 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
         <h2 className="text-lg font-bold">Guardar o pasar a otro navegador</h2>
         <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">
-          El progreso vive solo en este navegador. Descárgalo de vez en cuando y, si cambias de navegador o de equipo, impórtalo allá.
+          {cuenta.correo
+            ? `Tu progreso se guarda en la nube con ${cuenta.correo} y se sincroniza en cada equipo donde entres. Igual puedes descargar una copia.`
+            : 'Sin entrar con Google, el progreso vive solo en este navegador. Entra (arriba del índice) para guardarlo en la nube, o descárgalo e impórtalo en el otro equipo.'}
         </p>
         {!guardadoOk && (
           <p className="mt-2 text-sm font-semibold text-red-700 dark:text-red-400">

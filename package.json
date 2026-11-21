@@ -11,6 +11,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "firebase": "^13.4.0",
     "katex": "^0.19.1",
     "mafs": "^0.21.0",
     "mathjs": "^15.2.0",

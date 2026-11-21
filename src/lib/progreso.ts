@@ -178,3 +178,57 @@ export function importar(texto: string): Progreso {
   }
   return { version: 1, creado: d.creado, entradas, historial }
 }
+
+// ---------- Combinar dos copias (navegador y nube) ----------
+
+const claveEvento = (e: Evento) => `${e.fecha}|${e.id}|${e.tipo}|${String(e.valor)}`
+
+/**
+ * Junta dos copias del progreso sin perder registros:
+ * - El historial es la unión de los dos (sin repetidos), ordenado por fecha.
+ * - El semáforo y el cuaderno de cada entrada salen del último registro del historial unido,
+ *   así gana el cambio más reciente sin importar en qué equipo se hizo.
+ * - "Dilo con tus palabras" no tiene fecha: gana la copia `preferida` (la nube) si tiene texto;
+ *   si está vacía, se conserva el texto de la otra.
+ */
+export function combinar(otra: Progreso, preferida: Progreso): Progreso {
+  const vistos = new Set<string>()
+  const historial: Evento[] = []
+  for (const ev of [...preferida.historial, ...otra.historial]) {
+    const k = claveEvento(ev)
+    if (vistos.has(k)) continue
+    vistos.add(k)
+    historial.push(ev)
+  }
+  historial.sort((a, b) => a.fecha.localeCompare(b.fecha))
+
+  const entradas: Record<string, EstadoEntrada> = {}
+  for (const id of new Set([...Object.keys(otra.entradas), ...Object.keys(preferida.entradas)])) {
+    const a = otra.entradas[id]
+    const b = preferida.entradas[id]
+    const base = b ?? a ?? estadoVacio()
+    entradas[id] = { ...base, palabras: b?.palabras || a?.palabras || '' }
+  }
+  for (const ev of historial) {
+    const e = (entradas[ev.id] ??= estadoVacio())
+    if (ev.tipo === 'semaforo') e.semaforo = ev.valor
+    else e.cuaderno = ev.valor
+  }
+
+  const creado = otra.creado < preferida.creado ? otra.creado : preferida.creado
+  return { version: 1, creado, entradas, historial }
+}
+
+/** JSON con las claves ordenadas: dos copias con lo mismo dan el mismo texto. */
+export function jsonEstable(p: Progreso): string {
+  const ordenar = (v: unknown): unknown =>
+    Array.isArray(v)
+      ? v.map(ordenar)
+      : v && typeof v === 'object'
+        ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, ordenar((v as Record<string, unknown>)[k])]))
+        : v
+  return JSON.stringify(ordenar(p))
+}
+
+/** ¿Las dos copias guardan exactamente lo mismo? */
+export const iguales = (a: Progreso, b: Progreso) => jsonEstable(a) === jsonEstable(b)

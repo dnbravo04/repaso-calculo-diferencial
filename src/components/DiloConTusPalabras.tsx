@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { acciones, useGuardadoOk, useProgreso } from '../lib/almacen'
 import { estadoDe } from '../lib/progreso'
+import { useCuenta } from '../lib/cuenta'
 
 /**
  * Textarea para escribir la respuesta con mis palabras. La app no responde nada: solo guarda.
@@ -9,6 +10,7 @@ import { estadoDe } from '../lib/progreso'
 export default function DiloConTusPalabras({ id }: { id: string }) {
   const guardado = estadoDe(useProgreso(), id).palabras
   const guardadoOk = useGuardadoOk()
+  const enNube = !!useCuenta().correo
   const [texto, setTexto] = useState(guardado)
   const pendiente = useRef<string | null>(null)
   const temporizador = useRef<number | undefined>(undefined)
@@ -63,7 +65,9 @@ export default function DiloConTusPalabras({ id }: { id: string }) {
           : escribiendo
             ? 'Escribiendo…'
             : texto
-              ? 'Guardado en este navegador.'
+              ? enNube
+                ? 'Guardado en tu cuenta.'
+                : 'Guardado en este navegador.'
               : 'Se guarda solo mientras escribes.'}
       </p>
     </div>

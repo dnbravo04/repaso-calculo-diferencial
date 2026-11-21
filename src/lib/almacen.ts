@@ -3,6 +3,8 @@
 // bloqueado, la app sigue funcionando (solo que no recuerda).
 import { useSyncExternalStore } from 'react'
 import {
+  combinar,
+  iguales,
   importar,
   ponerCuaderno,
   ponerPalabras,
@@ -54,11 +56,36 @@ function emitir() {
   for (const o of oyentes) o()
 }
 
-function actualizar(nuevo: Progreso) {
-  if (nuevo === estado) return
+// Quien quiera enterarse de los cambios hechos aquí (la sincronización con la nube).
+const oyentesLocales = new Set<(p: Progreso) => void>()
+export function alCambiarLocal(o: (p: Progreso) => void) {
+  oyentesLocales.add(o)
+  return () => {
+    oyentesLocales.delete(o)
+  }
+}
+export const progresoActual = () => estado
+
+function poner(nuevo: Progreso) {
   estado = nuevo
   guardadoOk = escribirGuardado(estado)
   emitir()
+}
+
+function actualizar(nuevo: Progreso) {
+  if (nuevo === estado) return
+  poner(nuevo)
+  for (const o of oyentesLocales) o(estado)
+}
+
+/**
+ * Llega una copia desde la nube: se combina con la de este navegador y se devuelve el resultado
+ * (la sincronización lo sube si quedó distinto de lo que había en la nube).
+ */
+export function aplicarRemoto(remoto: Progreso): Progreso {
+  const combinado = combinar(estado, remoto)
+  if (!iguales(combinado, estado)) poner(combinado)
+  return estado
 }
 
 // Si la bitácora está abierta en dos pestañas, se sincronizan.

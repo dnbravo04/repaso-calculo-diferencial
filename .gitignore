@@ -9,3 +9,8 @@ referencia/
 # Instrucciones y documento original: contienen datos personales, no se publican
 CLAUDE.md
 bitacora-extendida-contenido.md
+
+# Firebase CLI
+.firebase/
+firebase-debug.log
+firestore-debug.log

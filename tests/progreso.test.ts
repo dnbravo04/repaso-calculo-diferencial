@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import {
+  combinar,
   describirSerie,
   diasEntre,
   estadoDe,
   exportar,
+  iguales,
   importar,
   ponerCuaderno,
   ponerPalabras,
@@ -185,5 +187,35 @@ describe('localStorage con try/catch', () => {
     expect(escribirGuardado(progresoVacio(), roto)).toBe(false)
     expect(leerGuardado({ getItem: (k: string) => (k === CLAVE ? '{basura' : null) }).entradas).toEqual({})
     expect(leerGuardado(undefined).entradas).toEqual({})
+  })
+})
+
+describe('combinar navegador y nube', () => {
+  it('une los historiales y gana el cambio más reciente', () => {
+    const base = progresoVacio(d('2026-11-20'))
+    const pc = ponerCuaderno(ponerSemaforo(base, '1.1', 'rojo', d('2026-11-21')), '1.2', true, d('2026-11-21'))
+    const cel = ponerSemaforo(base, '1.1', 'verde', d('2026-11-22'))
+    const c = combinar(pc, cel)
+    expect(c.historial).toHaveLength(3)
+    expect(estadoDe(c, '1.1').semaforo).toBe('verde')
+    expect(estadoDe(c, '1.2').cuaderno).toBe(true)
+    // Al revés da lo mismo para el semáforo: manda la fecha, no el equipo.
+    expect(estadoDe(combinar(cel, pc), '1.1').semaforo).toBe('verde')
+  })
+
+  it('no repite registros y es estable al combinar dos veces', () => {
+    const p = ponerSemaforo(progresoVacio(d('2026-11-20')), '0', 'amarillo', d('2026-11-21'))
+    const c = combinar(p, p)
+    expect(c.historial).toHaveLength(1)
+    expect(iguales(combinar(c, c), c)).toBe(true)
+  })
+
+  it('en "Dilo con tus palabras" gana la nube, salvo que esté vacía', () => {
+    const base = progresoVacio(d('2026-11-20'))
+    const local = ponerPalabras(ponerPalabras(base, '1.1', 'local'), '1.2', 'solo local')
+    const nube = ponerPalabras(base, '1.1', 'nube')
+    const c = combinar(local, nube)
+    expect(estadoDe(c, '1.1').palabras).toBe('nube')
+    expect(estadoDe(c, '1.2').palabras).toBe('solo local')
   })
 })

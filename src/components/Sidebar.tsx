@@ -5,6 +5,7 @@ import { useProgreso } from '../lib/almacen'
 import { estadoDe } from '../lib/progreso'
 import { entradasEnRojo } from '../lib/plan'
 import Senal from './Senal'
+import Cuenta from './Cuenta'
 
 const claseItem = (activo: boolean) =>
   `flex items-start gap-2 rounded-md px-3 py-1.5 leading-snug ${
@@ -19,6 +20,9 @@ export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <nav aria-label="Índice de entradas" className="text-sm">
+      <div className="mb-4 px-1">
+        <Cuenta />
+      </div>
       <ul className="mb-5 space-y-0.5">
         <li>
           <NavLink to="/" end onClick={onNavigate} className={({ isActive }) => claseItem(isActive)}>

@@ -89,6 +89,14 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '2.5', donde: 'Ejemplo: f(0) = 1/2', izq: '(3*0 - 3)/(0 - 0 - 6)', der: '1/2' },
   { entrada: '2.5', donde: 'mínimo de la rama derecha = −5 + 2√2', izq: 'f(x) = (2x^2 + 3x - 1)/(x + 2); f(-2 + 1/sqrt(2))', der: '-5 + 2*sqrt(2)' },
   { entrada: '2.5', donde: 'extremo de la rama izquierda = (42 + 12√6)/25', izq: 'y = (42 + 12*sqrt(6))/25; 25y^2 - 84y + 36', der: '0' },
+  // 3.1 (derivadas por definición comparadas con el cociente de diferencias con h pequeño)
+  { entrada: '3.1', donde: "(x³−2x)' en x = 2", izq: 'f(x) = x^3 - 2x; (f(2 + 1e-7) - f(2))/1e-7', der: '3*2^2 - 2' },
+  { entrada: '3.1', donde: "(1/(x+1))' en x = 1", izq: 'f(x) = 1/(x + 1); (f(1 + 1e-7) - f(1))/1e-7', der: '-1/(1 + 1)^2' },
+  { entrada: '3.1', donde: "(√(2x+1))' en x = 4", izq: 'f(x) = sqrt(2x + 1); (f(4 + 1e-7) - f(4))/1e-7', der: '1/sqrt(9)' },
+  { entrada: '3.1', donde: 'velocidad promedio [1,3]', izq: '(4.9*3^2 - 4.9*1^2)/(3 - 1)', der: '19.6' },
+  { entrada: '3.1', donde: 'velocidad en t = 2', izq: 's(t) = 4.9t^2; (s(2 + 1e-7) - s(2))/1e-7', der: '19.6' },
+  { entrada: '3.1', donde: "Ejemplo f'(1) = 1/4", izq: '(sqrt(4.001) - 2)/0.001', der: '0.24998' },
+  { entrada: '3.1', donde: 'pendiente secante h = 2', izq: '(sqrt(6) - 2)/2', der: '0.2247' },
   // FIN
 ]
 

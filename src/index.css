@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  color-scheme: light dark;
+}
+
+/* Fórmulas largas: scroll horizontal dentro de su caja, nunca desborde. */
+.contenido .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+  margin: 0.5rem 0;
+}
+.contenido .katex {
+  font-size: 1.08em;
+}
+
+.tabla-scroll {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.contenido .tabla-scroll table {
+  margin: 0;
+}
+
+/* Tarjeta de paso: fórmula arriba, justificación abajo. */
+.contenido .paso {
+  margin: 1rem 0;
+  border: 1px solid var(--color-stone-200);
+  border-left: 4px solid var(--color-teal-600);
+  border-radius: 0.5rem;
+  background: white;
+  overflow: hidden;
+}
+.contenido .paso-formula {
+  padding: 0.25rem 1rem;
+}
+.contenido .paso-razon {
+  padding: 0.5rem 1rem;
+  border-top: 1px dashed var(--color-stone-200);
+  background: var(--color-stone-100);
+  font-size: 0.95em;
+}
+.contenido .paso-razon > :first-child { margin-top: 0; }
+.contenido .paso-razon > :last-child { margin-bottom: 0; }
+.contenido .paso-razon:empty { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  .contenido .paso {
+    background: var(--color-stone-900);
+    border-color: var(--color-stone-700);
+    border-left-color: var(--color-teal-500);
+  }
+  .contenido .paso-razon {
+    background: var(--color-stone-800);
+    border-top-color: var(--color-stone-700);
+  }
+}
+
+/* Lista de chequeo (Parte 0.11) sin viñeta doble. */
+.contenido li:has(> input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.25rem;
+}
+
+@media print {
+  body { background: white; color: black; }
+  .contenido .paso { break-inside: avoid; background: white; }
+  .contenido .paso-razon { background: white; }
+  .contenido .katex-display { overflow: visible; }
+}

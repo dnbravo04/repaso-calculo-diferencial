@@ -1,0 +1,57 @@
+import { describe, expect, it } from 'vitest'
+import { evaluate } from 'mathjs'
+
+// Cada "Verificación" numérica de los ejemplos, escrita como igualdad izquierda = derecha.
+// Se evalúa con mathjs y se compara con tolerancia 1e-4.
+const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string }[] = [
+  // Parte 0
+  { entrada: '0', donde: '0.2 (x = 13/2)', izq: '3*(2*(13/2)-5)/4 + 1', der: '7' },
+  { entrada: '0', donde: '0.3 (x = 5)', izq: '5*5 - 7', der: '2*5 + 8' },
+  { entrada: '0', donde: '0.4 (x = 2/3)', izq: '2/(2/3-1) + 1/(2/3+1)', der: '3/((2/3)^2-1)' },
+  { entrada: '0', donde: '0.5 fórmula, x = 3', izq: '2*3^2 - 7*3 + 3', der: '0' },
+  { entrada: '0', donde: '0.5 fórmula, x = 1/2', izq: '2*(1/2)^2 - 7*(1/2) + 3', der: '0' },
+  { entrada: '0', donde: '0.5 cuadrado, x = -3+√7', izq: '(-3+sqrt(7))^2 + 6*(-3+sqrt(7)) + 2', der: '0' },
+  { entrada: '0', donde: '0.5 cuadrado, x = -3-√7', izq: '(-3-sqrt(7))^2 + 6*(-3-sqrt(7)) + 2', der: '0' },
+  { entrada: '0', donde: '0.7 (x = 9)', izq: 'sqrt(9 + 7)', der: '9 - 5' },
+  { entrada: '0', donde: '0.8 (x = 5/3)', izq: 'abs(3*(5/3) + 2)', der: '7' },
+  { entrada: '0', donde: '0.8 (x = -3)', izq: 'abs(3*(-3) + 2)', der: '7' },
+  { entrada: '0', donde: '0.10 e^(2x-1) = 5', izq: 'exp(2*((1 + log(5))/2) - 1)', der: '5' },
+  { entrada: '0', donde: '0.10 logaritmos (x = 3)', izq: 'log(3 + 1) + log(3 - 1)', der: 'log(8)' },
+  // Parte T
+  { entrada: 'T', donde: 'T.7 cos(π/12)', izq: 'cos(pi/12)', der: '(sqrt(2) + sqrt(6))/4' },
+  { entrada: 'T', donde: 'T.9 sen(π/8)', izq: 'sin(pi/8)', der: 'sqrt(2 - sqrt(2))/2' },
+  { entrada: 'T', donde: 'T.4 tan(11π/6)', izq: 'tan(11*pi/6)', der: '-sqrt(3)/3' },
+  { entrada: 'T', donde: 'T.10 en x = π/6', izq: '(1 - cos(2*pi/6))/sin(2*pi/6)', der: 'tan(pi/6)' },
+  { entrada: 'T', donde: 'T.11 cos x = -√3/2, x = 7π/6', izq: '2*cos(7*pi/6) + sqrt(3)', der: '0' },
+  { entrada: 'T', donde: 'T.11 sen 2x = sen x, x = π/3', izq: 'sin(2*pi/3)', der: 'sin(pi/3)' },
+  // 1.2
+  { entrada: '1.2', donde: 'recta por (2, -3)', izq: '-2*2 + 1', der: '-3' },
+  { entrada: '1.2', donde: 'perpendicular por (2, 1)', izq: '4/3*2 - 5/3', der: '1' },
+  { entrada: '1.2', donde: 'ceros de 3x²-12x+7', izq: '3*(2 + sqrt(15)/3)^2 - 12*(2 + sqrt(15)/3) + 7', der: '0' },
+  { entrada: '1.2', donde: 'gimnasios n = 15', izq: '50000 + 3000*15', der: '20000 + 5000*15' },
+  // 1.3
+  { entrada: '1.3', donde: 'cociente de diferencias (a=1, h=0.5)', izq: '((2*1.5^2 + 1.5) - (2*1^2 + 1))/0.5', der: '4*1 + 2*0.5 + 1' },
+  // 1.4
+  { entrada: '1.4', donde: 'tarifa q = 25', izq: '34000 + 2500*(25 - 20)', der: '46500' },
+  { entrada: '1.4', donde: 'tarifa continua en q = 20', izq: '4000 + 1500*20', der: '34000' },
+  // 1.6
+  { entrada: '1.6', donde: 'g(3/2)', izq: '-2*sqrt(4 - 2*(3/2)) + 3', der: '1' },
+  { entrada: '1.6', donde: 'g(0)', izq: '-2*sqrt(4 - 2*0) + 3', der: '-1' },
+  // 1.7
+  { entrada: '1.7', donde: 'mínimo en x = 2π/3', izq: '2*cos(3*(2*pi/3) - pi) + 1', der: '-1' },
+  { entrada: '1.7', donde: 'tanque t = 4/3', izq: '1.5 + 0.3*cos(pi*(4/3)/4)', der: '1.65' },
+  { entrada: '1.7', donde: 'tanque t = 44/3', izq: '1.5 + 0.3*cos(pi*(44/3)/4)', der: '1.65' },
+  // 1.8
+  { entrada: '1.8', donde: 'inversa: f⁻¹(f(0))', izq: '(3*(-1/3) + 1)/(2 - (-1/3))', der: '0' },
+  { entrada: '1.8', donde: 'cos(arcsen(1/2))', izq: 'cos(asin(1/2))', der: 'sqrt(1 - 1/4)' },
+  { entrada: '1.8', donde: 'cosh² - senh² en x = 1,3', izq: 'cosh(1.3)^2 - sinh(1.3)^2', der: '1' },
+  { entrada: '1.8', donde: 'log₂ 8', izq: 'log(8)/log(2)', der: '3' },
+]
+
+describe('verificaciones numéricas de los ejemplos', () => {
+  it.each(VERIFICACIONES.map((v) => [`${v.entrada} · ${v.donde}`, v]))('%s', (_n, v) => {
+    const a = Number(evaluate(v.izq))
+    const b = Number(evaluate(v.der))
+    expect(Math.abs(a - b)).toBeLessThan(1e-4)
+  })
+})

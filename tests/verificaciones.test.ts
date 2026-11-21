@@ -230,6 +230,18 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.6', donde: 'Ejemplo f(3) = 9/2', izq: '27/(9 - 3)', der: '9/2' },
   { entrada: '4.6', donde: 'Ejemplo f(2,9) ≈ 4,5081', izq: 'round(2.9^3/(2.9^2 - 3), 4)', der: '4.5081' },
   { entrada: '4.6', donde: 'Ejemplo f(3,1) ≈ 4,5070', izq: 'round(3.1^3/(3.1^2 - 3), 4)', der: '4.507' },
+  // 4.7
+  { entrada: '4.7', donde: 'Herón x₂', izq: '(1.5 + 2/1.5)/2', der: '1.4166667' },
+  { entrada: '4.7', donde: 'Herón x₃', izq: 'x = 17/12; (x + 2/x)/2', der: '1.4142157' },
+  { entrada: '4.7', donde: 'cos x = x', izq: 'cos(0.7390851) - 0.7390851', der: '0' },
+  { entrada: '4.7', donde: 'cos: x₁', izq: '1 - (cos(1) - 1)/(-sin(1) - 1)', der: '0.7503639' },
+  { entrada: '4.7', donde: 'tanque h₁', izq: '1 - (3 - 2 pi)/(-3 pi)', der: '0.6516432' },
+  { entrada: '4.7', donde: 'tanque: V(0,6355008) = 1 m³', izq: 'h = 0.6355008; pi h^2 (3 - h)/3', der: '1' },
+  { entrada: '4.7', donde: 'Ejemplo x₂', izq: '2.1 - 0.061/11.23', der: '2.0945681' },
+  { entrada: '4.7', donde: 'Ejemplo raíz', izq: 'x = 2.0945515; x^3 - 2x - 5', der: '0' },
+  { entrada: '4.7', donde: 'tangente en 2 corta en 2,1', izq: '-1 + 10*(2.1 - 2)', der: '0' },
+  { entrada: '4.7', donde: 'gráfica: f(1,7) ≈ −3,49', izq: 'round(1.7^3 - 2*1.7 - 5, 2)', der: '-3.49' },
+  { entrada: '4.7', donde: 'x³ − x desde 0,5 va a −1', izq: 'x = 0.5; x - (x^3 - x)/(3x^2 - 1)', der: '-1' },
   // FIN
 ]
 

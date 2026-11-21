@@ -3,6 +3,7 @@ import { validarInteractivo, type InteractivoSpec } from '../../lib/interactivo'
 import Circulo from './Circulo'
 import Limite from './Limite'
 import Pendiente from './Pendiente'
+import Ruffini from './Ruffini'
 import Secante from './Secante'
 
 /** Bloque ```interactivo de una entrada: elige el componente según "tipo". */
@@ -24,6 +25,8 @@ export default function Interactivo({ json }: { json: string }) {
       return <Secante spec={spec} />
     case 'pendiente':
       return <Pendiente spec={spec} />
+    case 'ruffini':
+      return <Ruffini spec={spec} />
   }
 }
 

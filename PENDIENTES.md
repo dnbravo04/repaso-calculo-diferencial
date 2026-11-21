@@ -115,3 +115,15 @@ No hay coincidencias: ningún ejemplo ni ejercicio de práctica usa la misma fun
 - Las pruebas comprueban que cada límite, cada derivada y cada valor exacto del círculo coincidan con el cálculo numérico.
 - Nueva opción `"proporcional": true` para que los círculos se vean redondos (1.1, semicircunferencia; 4.2, escalera).
 - En 1.1 y 4.8, el gris punteado marca una recta de referencia ($y = 5$, $y = \tfrac{1}{2}$), no una función original.
+
+## Parte F (factorización, Ruffini y división sintética) — 21 de noviembre
+
+- **Entrada nueva en Bases**, entre la Parte 0 y la Parte T, con plan el 21 de noviembre. Cubre:
+  - los casos de factorización en orden (factor común, diferencia de cuadrados, trinomios, cubos, agrupación y fórmula general);
+  - los teoremas del residuo y del factor;
+  - las raíces racionales $\pm\tfrac{p}{q}$;
+  - la división sintética, con tres ejemplos: residuo cero, términos que faltan y divisor $2x - 1$.
+- **Tabla de Ruffini interactiva** (```interactivo tipo `ruffini`): se avanza paso a paso (bajar, multiplicar y sumar) y se pueden probar los candidatos $\pm\tfrac{p}{q}$.
+- **Comparación con los talleres.** Se compararon los ejemplos y la práctica con los cinco talleres (están en el Escritorio, fuera del proyecto). Ninguno usa un polinomio de un ejercicio. Se evitaron, por ejemplo, $x^3 - 1$, $x^3 - 8$, $x^2 - 7x + 12$, $x^2 + 2x + 1$ y $x^2 - 4x + 1$.
+- **15 verificaciones numéricas nuevas**, una por cada identidad de la entrada.
+- **Arreglo de KaTeX.** `rehype-katex` traía su propio KaTeX 0.16, pero los estilos eran los de KaTeX 0.19. Por eso las rayas de `\hline` no se veían. Ahora un `overrides` en `package.json` hace que use el mismo 0.19 con el que se validan las fórmulas en las pruebas. Se revisaron las 36 entradas: ninguna fórmula da error.

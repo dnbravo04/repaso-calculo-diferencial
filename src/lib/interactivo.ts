@@ -45,9 +45,17 @@ export interface PendienteSpec {
   descripcion: string
 }
 
-export type InteractivoSpec = CirculoSpec | LimiteSpec | SecanteSpec | PendienteSpec
+/** Tabla de Ruffini paso a paso: P(x) ÷ (x − a). Se pueden probar otras raíces candidatas. */
+export interface RuffiniSpec {
+  tipo: 'ruffini'
+  coeficientes: Num[] // de mayor a menor grado, con 0 en los grados que faltan
+  raiz: Num
+  descripcion: string
+}
 
-export const TIPOS = ['circulo-unitario', 'limite', 'secante', 'pendiente'] as const
+export type InteractivoSpec = CirculoSpec | LimiteSpec | SecanteSpec | PendienteSpec | RuffiniSpec
+
+export const TIPOS = ['circulo-unitario', 'limite', 'secante', 'pendiente', 'ruffini'] as const
 
 /** Derivada numérica central, para comprobar los datos del bloque. */
 export const derivadaNumerica = (f: (x: number) => number, x: number, h = 1e-5) => (f(x + h) - f(x - h)) / (2 * h)
@@ -62,6 +70,18 @@ export function validarInteractivo(datos: unknown): string[] {
     e.push('Falta "descripcion" (regla 5): qué se ve, qué se mueve y qué hay que notar.')
   }
   if (g.tipo === 'circulo-unitario') return e
+  if (g.tipo === 'ruffini') {
+    const r = g as RuffiniSpec
+    try {
+      const c = (r.coeficientes ?? []).map(num)
+      if (c.length < 2 || c.some((v) => !Number.isFinite(v))) e.push('"coeficientes" necesita al menos dos números.')
+      else if (c[0] === 0) e.push('El primer coeficiente (el principal) no puede ser 0.')
+      if (!Number.isFinite(num(r.raiz))) e.push('"raiz" no es un número.')
+    } catch {
+      e.push('mathjs no entiende "coeficientes" o "raiz".')
+    }
+    return e
+  }
 
   const s = g as LimiteSpec | SecanteSpec | PendienteSpec
   if (!s.vista || !Array.isArray(s.vista.x) || !Array.isArray(s.vista.y)) e.push('Falta "vista" con x e y.')
@@ -152,4 +172,89 @@ export function radianesTex(grados: number): string {
   const den = 12 / k
   const arriba = num_ === 1 ? '\\pi' : `${num_}\\pi`
   return den === 1 ? arriba : `\\tfrac{${arriba}}{${den}}`
+}
+
+// ---------- División sintética (regla de Ruffini) ----------
+
+export interface TablaRuffini {
+  /** Fila del medio: productos; el primero no existe (se "baja" el coeficiente). */
+  productos: (number | null)[]
+  /** Fila de abajo: sumas. Las primeras n − 1 son el cociente; la última, el residuo. */
+  resultados: number[]
+  cociente: number[]
+  residuo: number
+}
+
+/** P(x) ÷ (x − a) con coeficientes de mayor a menor grado. */
+export function ruffini(coefs: number[], a: number): TablaRuffini {
+  const productos: (number | null)[] = [null]
+  const resultados: number[] = [coefs[0]]
+  for (let i = 1; i < coefs.length; i++) {
+    const p = resultados[i - 1] * a
+    productos.push(p)
+    resultados.push(coefs[i] + p)
+  }
+  return { productos, resultados, cociente: resultados.slice(0, -1), residuo: resultados[resultados.length - 1] }
+}
+
+/** Valor de P(x) por Horner. */
+export const evaluarPolinomio = (coefs: number[], x: number) => coefs.reduce((s, c) => s * x + c, 0)
+
+const divisores = (n: number) => {
+  const m = Math.abs(Math.round(n))
+  return Array.from({ length: m }, (_, i) => i + 1).filter((d) => m % d === 0)
+}
+
+/**
+ * Raíces racionales posibles ±p/q (p divide al término independiente, q al coeficiente principal),
+ * de menor a mayor. Solo para coeficientes enteros; si el término independiente es 0, incluye el 0.
+ */
+export function candidatosRacionales(coefs: number[]): number[] {
+  if (!coefs.every(Number.isInteger)) return []
+  let c = [...coefs]
+  const conCero = c[c.length - 1] === 0
+  while (c.length > 1 && c[c.length - 1] === 0) c = c.slice(0, -1)
+  if (c.length < 2) return [0]
+  const ps = divisores(c[c.length - 1])
+  const qs = divisores(c[0])
+  const vistos = new Set<string>()
+  const salida: number[] = conCero ? [0] : []
+  for (const p of ps)
+    for (const q of qs)
+      for (const v of [p / q, -p / q]) {
+        const k = v.toFixed(9)
+        if (!vistos.has(k)) {
+          vistos.add(k)
+          salida.push(v)
+        }
+      }
+  return salida.sort((x, y) => x - y)
+}
+
+/** Número como TeX: entero, fracción exacta (denominador hasta 100) o decimal con coma. */
+export function numeroTex(v: number): string {
+  if (Math.abs(v - Math.round(v)) < 1e-9) return String(Math.round(v))
+  for (let d = 2; d <= 100; d++) {
+    const n = v * d
+    if (Math.abs(n - Math.round(n)) < 1e-9) {
+      const k = Math.round(n)
+      return `${k < 0 ? '-' : ''}\\tfrac{${Math.abs(k)}}{${d}}`
+    }
+  }
+  return v.toFixed(3).replace('.', '{,}')
+}
+
+/** Polinomio en TeX a partir de sus coeficientes (de mayor a menor grado). */
+export function polinomioTex(coefs: number[]): string {
+  const n = coefs.length - 1
+  const partes: string[] = []
+  coefs.forEach((c, i) => {
+    if (Math.abs(c) < 1e-12) return
+    const g = n - i
+    const x = g === 0 ? '' : g === 1 ? 'x' : `x^{${g}}`
+    const abs = numeroTex(Math.abs(c))
+    const cuerpo = g > 0 && abs === '1' ? x : `${abs}${x}`
+    partes.push(partes.length === 0 ? (c < 0 ? `-${cuerpo}` : cuerpo) : `${c < 0 ? '-' : '+'} ${cuerpo}`)
+  })
+  return partes.length ? partes.join(' ') : '0'
 }

@@ -264,6 +264,22 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.9', donde: 'lata A mínima', izq: 'r = cbrt(0.001/(2 pi)); round(2 pi r^2 + 0.002/r, 5)', der: '0.05536' },
   { entrada: '4.9', donde: 'lata A(0,04)', izq: 'round(2 pi 0.04^2 + 0.002/0.04, 5)', der: '0.06005' },
   { entrada: '4.9', donde: 'Trampa x³ − 3x: f(3) = 18', izq: '3^3 - 3*3', der: '18' },
+  // Parte F (cada identidad evaluada en x = 1,3)
+  { entrada: 'F', donde: 'F.4 factor común', izq: 'x = 1.3; 4x^3 - 10x^2', der: 'x = 1.3; 2x^2 (2x - 5)' },
+  { entrada: 'F', donde: 'F.4 diferencia de cuadrados', izq: 'x = 1.3; 49x^2 - 16', der: 'x = 1.3; (7x - 4)(7x + 4)' },
+  { entrada: 'F', donde: 'F.4 cuarta potencia', izq: 'x = 1.3; 16x^4 - 1', der: 'x = 1.3; (2x - 1)(2x + 1)(4x^2 + 1)' },
+  { entrada: 'F', donde: 'F.4 trinomio cuadrado perfecto', izq: 'x = 1.3; 9x^2 - 30x + 25', der: 'x = 1.3; (3x - 5)^2' },
+  { entrada: 'F', donde: 'F.4 x^2 + bx + c', izq: 'x = 1.3; x^2 - 2x - 35', der: 'x = 1.3; (x - 7)(x + 5)' },
+  { entrada: 'F', donde: 'F.4 método ac', izq: 'x = 1.3; 6x^2 + 7x - 3', der: 'x = 1.3; (2x + 3)(3x - 1)' },
+  { entrada: 'F', donde: 'F.4 suma de cubos', izq: 'x = 1.3; 27x^3 + 8', der: 'x = 1.3; (3x + 2)(9x^2 - 6x + 4)' },
+  { entrada: 'F', donde: 'F.4 diferencia de cubos', izq: 'x = 1.3; 8x^3 - 125', der: 'x = 1.3; (2x - 5)(4x^2 + 10x + 25)' },
+  { entrada: 'F', donde: 'F.4 agrupación', izq: 'x = 1.3; x^3 + 2x^2 - 25x - 50', der: 'x = 1.3; (x + 2)(x - 5)(x + 5)' },
+  { entrada: 'F', donde: 'F.4 fórmula general', izq: 'x = 1.3; x^2 + 2x - 4', der: 'x = 1.3; (x + 1 - sqrt(5))(x + 1 + sqrt(5))' },
+  { entrada: 'F', donde: 'F.5 ejemplo 1', izq: 'x = 1.3; 2x^3 - 3x^2 - 11x + 6', der: 'x = 1.3; (x - 3)(2x - 1)(x + 2)' },
+  { entrada: 'F', donde: 'F.5 ejemplo 2', izq: 'x = 1.3; x^4 - 3x^2 + 5x - 7', der: 'x = 1.3; (x + 2)(x^3 - 2x^2 + x + 3) - 13' },
+  { entrada: 'F', donde: 'F.5 ejemplo 3', izq: 'x = 1.3; 2x^3 + x^2 + 3x - 2', der: 'x = 1.3; (2x - 1)(x^2 + x + 2)' },
+  { entrada: 'F', donde: 'Ejemplo, factorización completa', izq: 'x = 1.3; x^4 - x^3 - 7x^2 + x + 6', der: 'x = 1.3; (x - 1)(x + 1)(x - 3)(x + 2)' },
+  { entrada: 'F', donde: 'F.5 ejemplo 2: P(-2) = -13', izq: '(-2)^4 - 3(-2)^2 + 5(-2) - 7', der: '-13' },
   // FIN
 ]
 

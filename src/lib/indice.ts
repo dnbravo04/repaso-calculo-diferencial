@@ -35,11 +35,13 @@ const e = (
   titulo,
   taller,
   plan,
-  archivo: id === '0' ? 'parte-0' : id === 'T' ? 'parte-t' : id.replace('.', '-'),
+  // Las partes de Bases se nombran con una letra o un número sin punto: 0, F, T → parte-0, parte-f, parte-t.
+  archivo: id.includes('.') ? id.replace('.', '-') : `parte-${id.toLowerCase()}`,
 })
 
 export const INDICE: EntradaIndice[] = [
   e('0', 0, 'Despeje de ecuaciones', '—', '2026-11-21'),
+  e('F', 0, 'Factorización, Ruffini y división sintética', '—', '2026-11-21'),
   e('T', 0, 'Trigonometría a fondo', '—', '2026-11-21'),
 
   e('1.1', 1, 'Definición, dominio y rango', 'TF 1–12', '2026-11-21'),
@@ -84,4 +86,4 @@ export const FECHA_FINAL = '2026-12-11T14:00:00-05:00'
 export const FECHA_REPASO = '2026-12-10'
 
 export const etiquetaEntrada = (id: string) =>
-  id === '0' ? 'Parte 0' : id === 'T' ? 'Parte T' : id
+  id.includes('.') ? id : `Parte ${id}`

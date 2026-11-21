@@ -110,7 +110,7 @@ describe('plan (Hoy y Modo repaso)', () => {
   })
 
   it('el plan sigue la tabla de CLAUDE.md', () => {
-    expect(entradasDeHoy('2026-11-21').map((e) => e.id)).toEqual(['0', 'T', '1.1', '1.2'])
+    expect(entradasDeHoy('2026-11-21').map((e) => e.id)).toEqual(['0', 'F', 'T', '1.1', '1.2'])
     expect(entradasDeHoy('2026-11-24').map((e) => e.id)).toEqual(['1.7', '1.8'])
     expect(entradasDeHoy('2026-12-03').map((e) => e.id)).toEqual(['3.11'])
     // Cada unidad queda dentro de su rango de fechas.
@@ -119,7 +119,7 @@ describe('plan (Hoy y Modo repaso)', () => {
       const [a, b] = rango[e.unidad as 1 | 2 | 3 | 4]
       expect(e.plan >= a && e.plan <= b, e.id).toBe(true)
     }
-    // Ningún día tiene más de dos entradas (salvo el 21, que junta Parte 0 y T con 1.1–1.2).
+    // Ningún día tiene más de dos entradas (salvo el 21, que junta las Bases con 1.1–1.2).
     const porDia = new Map<string, number>()
     for (const e of INDICE) porDia.set(e.plan, (porDia.get(e.plan) ?? 0) + 1)
     for (const [dia, n] of porDia) if (dia !== '2026-11-21') expect(n, dia).toBeLessThanOrEqual(2)
@@ -130,7 +130,7 @@ describe('plan (Hoy y Modo repaso)', () => {
     p = ponerCuaderno(p, '1.1', true)
     p = ponerSemaforo(p, '1.2', 'verde') // el semáforo no cuenta: falta el cuaderno
     const ids = entradasAtrasadas('2026-11-23', p).map((e) => e.id)
-    expect(ids).toEqual(['0', 'T', '1.2', '1.3', '1.4'])
+    expect(ids).toEqual(['0', 'F', 'T', '1.2', '1.3', '1.4'])
   })
 
   it('si hoy no hay nada, muestra el siguiente día del plan', () => {

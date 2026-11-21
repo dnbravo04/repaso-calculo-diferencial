@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import katex from 'katex'
 import { INDICE } from '../src/lib/indice'
 import { extraerFormulas, extraerInteractivos, textoSinFormulas } from '../src/lib/markdown'
-import { radianesTex, validarInteractivo, valoresExactos, type InteractivoSpec } from '../src/lib/interactivo'
+import { candidatosRacionales, evaluarPolinomio, numeroTex, polinomioTex, radianesTex, ruffini, validarInteractivo, valoresExactos, type InteractivoSpec } from '../src/lib/interactivo'
 import { KATEX_MACROS } from '../src/lib/katex'
 
 const DIR = join(__dirname, '..', 'src', 'content')
@@ -16,7 +16,7 @@ const compila = (tex: string) => katex.renderToString(tex, { throwOnError: true,
 describe('bloques interactivo', () => {
   it('hay al menos uno de cada tipo', () => {
     const tipos = new Set(bloques.map((b) => (JSON.parse(b.json) as InteractivoSpec).tipo))
-    expect([...tipos].sort()).toEqual(['circulo-unitario', 'limite', 'pendiente', 'secante'])
+    expect([...tipos].sort()).toEqual(['circulo-unitario', 'limite', 'pendiente', 'ruffini', 'secante'])
   })
 
   it.each(bloques.map((b) => [b.id, b.json]))('%s: JSON válido y datos matemáticos correctos', (_id, json) => {
@@ -75,5 +75,35 @@ describe('círculo unitario: valores exactos', () => {
       '\\tfrac{3\\pi}{2}',
       '\\tfrac{11\\pi}{6}',
     ])
+  })
+})
+
+describe('división sintética', () => {
+  it('cumple P(x) = (x − a)·Q(x) + r y el residuo es P(a)', () => {
+    const casos: [number[], number][] = [
+      [[2, -3, -11, 6], 3],
+      [[1, 0, -3, 5, -7], -2],
+      [[2, 1, 3, -2], 0.5],
+      [[1, -1, -7, 1, 6], 1],
+    ]
+    for (const [c, a] of casos) {
+      const t = ruffini(c, a)
+      expect(t.residuo).toBeCloseTo(evaluarPolinomio(c, a), 10)
+      for (const x of [-2.3, 0.7, 4.1]) {
+        expect(evaluarPolinomio(c, x)).toBeCloseTo((x - a) * evaluarPolinomio(t.cociente, x) + t.residuo, 9)
+      }
+    }
+    expect(ruffini([2, -3, -11, 6], 3)).toMatchObject({ cociente: [2, 3, -2], residuo: 0 })
+    expect(ruffini([1, 0, -3, 5, -7], -2)).toMatchObject({ cociente: [1, -2, 1, 3], residuo: -13 })
+  })
+
+  it('candidatos ±p/q y formato TeX', () => {
+    const cand = candidatosRacionales([2, -3, -11, 6])
+    for (const r of [3, 0.5, -2]) expect(cand).toContain(r)
+    expect(cand).toEqual([...cand].sort((a, b) => a - b))
+    expect(candidatosRacionales([1, -1, -7, 1, 6])).toEqual([-6, -3, -2, -1, 1, 2, 3, 6])
+    expect(numeroTex(-0.5)).toBe('-\\tfrac{1}{2}')
+    expect(polinomioTex([1, -2, 1, 3])).toBe('x^{3} - 2x^{2} + x + 3')
+    expect(polinomioTex([2, 0, -1])).toBe('2x^{2} - 1')
   })
 })

@@ -177,6 +177,17 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.11', donde: "Ejemplo h'₋(2) ≈ −4", izq: 'h(x) = abs(x^2 - 4); (h(2 - 1e-6) - h(2))/(-1e-6)', der: '-4' },
   { entrada: '3.11', donde: "Ejemplo h'₋(−2) ≈ −4", izq: 'h(x) = abs(x^2 - 4); (h(-2 - 1e-6) - h(-2))/(-1e-6)', der: '-4' },
   { entrada: '3.11', donde: '|x|³ derivable en 0', izq: 'abs(1e-4)^3/1e-4', der: '0' },
+  // 4.1
+  { entrada: '4.1', donde: '√4,1 real', izq: 'round(sqrt(4.1), 5)', der: '2.02485' },
+  { entrada: '4.1', donde: 'L(9) = 13/4', izq: '2 + (9 - 4)/4', der: '13/4' },
+  { entrada: '4.1', donde: '1,02⁵ real', izq: 'round(1.02^5, 5)', der: '1.10408' },
+  { entrada: '4.1', donde: 'V esfera', izq: '4/3 pi 0.3^3', der: '0.036 pi' },
+  { entrada: '4.1', donde: 'dV esfera', izq: '4 pi 0.09 * 0.002', der: '0.00072 pi' },
+  { entrada: '4.1', donde: 'error relativo 2 %', izq: '(4 pi 0.3^2 * 0.002)/(4/3 pi 0.3^3)', der: '0.02' },
+  { entrada: '4.1', donde: 'dA riego', izq: '2 pi 50 * 0.5', der: '50 pi' },
+  { entrada: '4.1', donde: 'Δy de x³', izq: '2.1^3 - 8', der: '1.261' },
+  { entrada: '4.1', donde: 'Ejemplo ∛8,06 real', izq: 'round(cbrt(8.06), 7)', der: '2.0049917' },
+  { entrada: '4.1', donde: 'Ejemplo 2,005³', izq: 'round(2.005^3, 5)', der: '8.06015' },
   // FIN
 ]
 

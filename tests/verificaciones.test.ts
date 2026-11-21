@@ -107,6 +107,13 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.2', donde: 'Ejemplo: y = 4x − 3 toca en (2, 5)', izq: '4*2 - 3', der: '2^2 + 1' },
   { entrada: '3.2', donde: 'Ejemplo: y = −4x − 3 toca en (−2, 5)', izq: '-4*(-2) - 3', der: '(-2)^2 + 1' },
   { entrada: '3.2', donde: 'Trampa: x³ y 3x − 2 en x = −2', izq: '(-2)^3', der: '3*(-2) - 2' },
+  // 3.3 (cada derivada se compara con una diferencia centrada)
+  { entrada: '3.3', donde: "(4x⁵ − 3∛x + 2/x²)' en x = 2", izq: 'f(x) = 4x^5 - 3*cbrt(x) + 2/x^2; (f(2 + 1e-6) - f(2 - 1e-6))/2e-6', der: '20*2^4 - 1/cbrt(2^2) - 4/2^3' },
+  { entrada: '3.3', donde: 'producto (x²+1)(3x−2) en x = 1', izq: 'f(x) = (x^2 + 1)(3x - 2); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '9 - 4 + 3' },
+  { entrada: '3.3', donde: "(x²eˣ)' en x = 1", izq: 'f(x) = x^2 exp(x); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '3*e' },
+  { entrada: '3.3', donde: 'cociente (2x−1)/(x²+3) en x = 1', izq: 'f(x) = (2x - 1)/(x^2 + 3); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '(-2 + 2 + 6)/16' },
+  { entrada: '3.3', donde: "Ejemplo f'(1) = 3/4", izq: 'f(x) = (x^3 - 2x)/(x + 1); (f(1.0001) - f(0.9999))/0.0002', der: '3/4' },
+  { entrada: '3.3', donde: 'Ejemplo: tangente pasa por (1, f(1))', izq: '3/4*1 - 5/4', der: '(1 - 2)/(1 + 1)' },
   // FIN
 ]
 

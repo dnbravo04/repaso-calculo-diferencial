@@ -242,6 +242,16 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.7', donde: 'tangente en 2 corta en 2,1', izq: '-1 + 10*(2.1 - 2)', der: '0' },
   { entrada: '4.7', donde: 'gráfica: f(1,7) ≈ −3,49', izq: 'round(1.7^3 - 2*1.7 - 5, 2)', der: '-3.49' },
   { entrada: '4.7', donde: 'x³ − x desde 0,5 va a −1', izq: 'x = 0.5; x - (x^3 - x)/(3x^2 - 1)', der: '-1' },
+  // 4.8
+  { entrada: '4.8', donde: '(eˣ−1−x)/x² → 1/2', izq: 'f(x) = (exp(x) - 1 - x)/x^2; f(1e-4)', der: '1/2' },
+  { entrada: '4.8', donde: 'x²/eˣ → 0', izq: '50^2/exp(50)', der: '0' },
+  { entrada: '4.8', donde: '√x ln x → 0', izq: 'sqrt(1e-12) * log(1e-12)', der: '0' },
+  { entrada: '4.8', donde: '1/ln x − 1/(x−1) → 1/2', izq: 'f(x) = 1/log(x) - 1/(x - 1); f(1 + 1e-4)', der: '1/2' },
+  { entrada: '4.8', donde: '(1+2x)^{1/x} → e²', izq: 'f(x) = (1 + 2x)^(1/x); f(1e-7)', der: 'e^2' },
+  { entrada: '4.8', donde: 'x^√x → 1', izq: '(1e-12)^sqrt(1e-12)', der: '1' },
+  { entrada: '4.8', donde: 'x^{1/x} → 1', izq: '(1e12)^(1/1e12)', der: '1' },
+  { entrada: '4.8', donde: 'Ejemplo → 1/6', izq: 'f(x) = (exp(x) - 1 - x - x^2/2)/x^3; f(0.001)', der: '1/6' },
+  { entrada: '4.8', donde: 'Trampa (x + sen x)/x → 1', izq: 'f(x) = (x + sin(x))/x; f(1e6)', der: '1' },
   // FIN
 ]
 

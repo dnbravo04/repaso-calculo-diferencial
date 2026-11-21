@@ -5,3 +5,7 @@ dist
 # Talleres y solucionarios del curso: solo referencia local, no se publican
 referencia/
 *.tsbuildinfo
+
+# Instrucciones y documento original: contienen datos personales, no se publican
+CLAUDE.md
+bitacora-extendida-contenido.md

@@ -65,6 +65,14 @@ export default function EntryView() {
           Taller: {entrada.taller} · Plan: {fechaLarga(entrada.plan)}
         </p>
         <ControlesEntrada id={entrada.id} />
+        {(entrada.id === '1.6' || entrada.id === '1.7') && (
+          <Link
+            to="/explorador"
+            className="mt-3 inline-block rounded-md border border-teal-600 px-3 py-1 text-sm text-teal-800 hover:bg-teal-50 dark:text-teal-300 dark:hover:bg-teal-950 print:hidden"
+          >
+            Abrir el explorador de transformaciones →
+          </Link>
+        )}
         <nav aria-label="Secciones" className="mt-4 flex flex-wrap gap-2 print:hidden">
           {entrada.secciones.map((s) => (
             <a

@@ -74,6 +74,11 @@ export function partirPractica(cuerpo: string): { pregunta: string; resto: strin
   }
 }
 
+/** Devuelve el JSON (texto) de cada bloque ```grafica. */
+export function extraerGraficas(md: string): string[] {
+  return [...md.matchAll(/^```grafica\s*\n([\s\S]*?)^```\s*$/gm)].map((m) => m[1])
+}
+
 /** Quita bloques de código cercados (```...```), que no son matemática. */
 export function quitarCodigo(md: string): string {
   return md.replace(/^(```|~~~)[\s\S]*?^\1\s*$/gm, '')

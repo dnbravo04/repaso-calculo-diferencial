@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "katex": "^0.19.1",
+    "mafs": "^0.21.0",
     "mathjs": "^15.2.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

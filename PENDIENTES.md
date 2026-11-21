@@ -46,6 +46,20 @@ Regla aplicada:
 - **Importar** reemplaza todo el progreso del navegador (pide confirmación antes); no mezcla.
 - Para ver la página Hoy de otro día: `#/?hoy=2026-11-23` (la fecha sale marcada como "simulada").
 
+## Fase 3 — revisada el 20 de noviembre (✅ todo aceptado tal como está)
+
+- **Gráficas nuevas** (9), cada una justo después de la tabla o descripción que ya tenía la entrada; las tablas de puntos se conservan:
+  - 1.2: $x^2 - 4$ en $[-3, 1]$ y $3x^2 - 12x + 7$.
+  - 1.4: $|x - 3| + |x + 1|$, $\lfloor x \rfloor$ en $[-3, 3)$ y la función por partes $f$ del Ejemplo.
+  - 1.6: de $\sqrt{x}$ a $-2\sqrt{4 - 2x} + 3$, y de $\tfrac{1}{x}$ a $\tfrac{3}{2x - 4} + 1$.
+  - 1.7: $2\cos(3x - \pi) + 1$ junto a $\cos x$ y la recta media.
+  - 1.8: $e^x$, $\ln x$ y la recta $y = x$.
+  Todas usan funciones que ya estaban en la entrada (no son ejercicios del taller).
+- **Colores**: la función original siempre en **gris**; las demás en azul, naranja y verde, que pasan la prueba de daltonismo en modo claro y oscuro. Descarté el magenta porque se confunde con el verde en modo oscuro.
+- **Rótulos de puntos**: solo se rotulan los puntos de la curva nueva; los de la original quedan marcados y nombrados en la descripción, para que no se amontonen.
+- **Explorador**: $A$ y $B$ van de $-4$ a $4$ en pasos de $\tfrac{1}{4}$ (se saltan el $0$); $C$ y $D$ en pasos de $\tfrac{1}{2}$. Con seno y coseno, $C$ va en pasos de $\tfrac{\pi}{4}$ para que los valores sigan siendo exactos.
+- **Peso**: Mafs y mathjs (~360 kB comprimidos) se descargan solo al abrir una entrada con gráfica o el explorador.
+
 ## Para la Fase 4
 
 - Revisar los ejercicios de **Practica** de la Unidad 1 contra los talleres de `referencia/` (regla 1). En la Fase 1 no se compararon porque el contenido ya venía escrito; por ejemplo, 1.2 Practica 3 (parábola por vértice y punto) se parece en forma al TF 24a.

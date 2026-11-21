@@ -10,6 +10,46 @@
   --rejilla: var(--color-stone-200);
   --cruz: var(--color-stone-400);
 }
+/* Colores de las gráficas de funciones: gris = función original; el resto, paleta validada. */
+:root {
+  --g-gris: #8f8d86;
+  --g-azul: #2a78d6;
+  --g-naranja: #eb6834;
+  --g-verde: #1baf7a;
+  --g-asintota: #a8a29e;
+}
+.grafica .MafsView,
+.explorador .MafsView {
+  --mafs-bg: white;
+  --mafs-fg: var(--color-stone-900);
+  --mafs-line-color: var(--color-stone-200);
+  --mafs-origin-color: var(--color-stone-500);
+  font-family: inherit;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --g-gris: #8a8780;
+    --g-azul: #3987e5;
+    --g-naranja: #d95926;
+    --g-verde: #199e70;
+    --g-asintota: #78716c;
+  }
+  .grafica .MafsView,
+  .explorador .MafsView {
+    --mafs-bg: var(--color-stone-900);
+    --mafs-fg: var(--color-stone-100);
+    --mafs-line-color: var(--color-stone-800);
+    --mafs-origin-color: var(--color-stone-400);
+  }
+}
+@media print {
+  .grafica .MafsView, .explorador .MafsView {
+    --mafs-bg: white;
+    --mafs-fg: black;
+    --mafs-line-color: #ddd;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --serie-1: #3987e5;
@@ -84,4 +124,10 @@
   .contenido .paso { break-inside: avoid; background: white; }
   .contenido .paso-razon { background: white; }
   .contenido .katex-display { overflow: visible; }
+}
+
+/* Rótulos LaTeX de Mafs: más pequeños que el valor por defecto (1.3em). */
+.grafica .MafsView foreignObject > div,
+.explorador .MafsView foreignObject > div {
+  font-size: 0.82em !important;
 }

@@ -40,6 +40,11 @@ export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
             )}
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/explorador" onClick={onNavigate} className={({ isActive }) => claseItem(isActive)}>
+            Explorador de transformaciones
+          </NavLink>
+        </li>
       </ul>
 
       {GRUPOS.map((g) => (

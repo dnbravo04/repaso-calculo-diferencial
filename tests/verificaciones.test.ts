@@ -214,6 +214,14 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.4', donde: 'tractor 15 m/s', izq: '180/12', der: '15' },
   { entrada: '4.4', donde: "Ejemplo f'(9) = 1/6", izq: 'f(x) = sqrt(x); (f(9 + 1e-6) - f(9 - 1e-6))/2e-6', der: '(4 - 2)/(16 - 4)' },
   { entrada: '4.4', donde: 'Ejemplo tangente en 16', izq: '3 + (16 - 9)/6', der: '25/6' },
+  // 4.5
+  { entrada: '4.5', donde: 'inflexión (2, 3)', izq: '2^3 - 6*2^2 + 9*2 + 1', der: '3' },
+  { entrada: '4.5', donde: 'f(1) = 5 y f(3) = 1', izq: '(1 - 6 + 9 + 1) + (27 - 54 + 27 + 1)', der: '6' },
+  { entrada: '4.5', donde: "g''(1) = 0 para la campana", izq: 'g(x) = exp(-x^2/2); (g(1 + 1e-4) - 2 g(1) + g(1 - 1e-4))/1e-8', der: '0' },
+  { entrada: '4.5', donde: 'g(1) = e^{−1/2}', izq: 'round(exp(-1/2), 4)', der: '0.6065' },
+  { entrada: '4.5', donde: 'Ejemplo f(±2) = −16', izq: '2^4 - 8*2^2', der: '-16' },
+  { entrada: '4.5', donde: 'Ejemplo inflexión y = −80/9', izq: 'x = 2/sqrt(3); x^4 - 8x^2', der: '-80/9' },
+  { entrada: '4.5', donde: "Ejemplo f''(2/√3) = 0", izq: '12 * (2/sqrt(3))^2 - 16', der: '0' },
   // FIN
 ]
 

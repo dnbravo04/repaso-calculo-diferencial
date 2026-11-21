@@ -15,23 +15,17 @@ import { KATEX_MACROS } from '../src/lib/katex'
 const DIR = join(__dirname, '..', 'src', 'content')
 const leer = (archivo: string) => readFileSync(join(DIR, `${archivo}.md`), 'utf8')
 
-// Unidades ya escritas. Las unidades 2–4 se escriben en la Fase 4.
-const UNIDADES_ESCRITAS = new Set([0, 1])
-const escritas = INDICE.filter((e) => UNIDADES_ESCRITAS.has(e.unidad))
-const pendientes = INDICE.filter((e) => !UNIDADES_ESCRITAS.has(e.unidad))
+// Las unidades 0 y 1 deben existir siempre; las demás se validan a medida que se escriben (Fase 4).
+const existe = (e: { archivo: string }) => existsSync(join(DIR, `${e.archivo}.md`))
+const escritas = INDICE.filter((e) => e.unidad <= 1 || existe(e))
+const pendientes = INDICE.filter((e) => e.unidad > 1 && !existe(e))
 
 describe('índice y archivos', () => {
   it.each(escritas.map((e) => [e.id, e]))('la entrada %s existe', (_id, e) => {
     expect(existsSync(join(DIR, `${e.archivo}.md`))).toBe(true)
   })
 
-  for (const e of pendientes) {
-    if (existsSync(join(DIR, `${e.archivo}.md`))) {
-      it(`la entrada ${e.id} existe`, () => expect(true).toBe(true))
-    } else {
-      it.todo(`la entrada ${e.id} (Fase 4)`)
-    }
-  }
+  for (const e of pendientes) it.todo(`la entrada ${e.id} (Fase 4)`)
 
   it('todo archivo de contenido está en el índice', () => {
     const archivos = readdirSync(DIR).filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, ''))

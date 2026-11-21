@@ -46,12 +46,26 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '1.8', donde: 'cos(arcsen(1/2))', izq: 'cos(asin(1/2))', der: 'sqrt(1 - 1/4)' },
   { entrada: '1.8', donde: 'cosh² - senh² en x = 1,3', izq: 'cosh(1.3)^2 - sinh(1.3)^2', der: '1' },
   { entrada: '1.8', donde: 'log₂ 8', izq: 'log(8)/log(2)', der: '3' },
+  // 2.1 (cada límite se compara con la expresión evaluada a 1e-6 del punto)
+  { entrada: '2.1', donde: 'sustitución directa', izq: '((-1)^3 + 2*(-1)^2 - 5)/(-1 + 3)', der: '-2' },
+  { entrada: '2.1', donde: '(x²+x−6)/(x−2), x→2', izq: 'f(x) = (x^2 + x - 6)/(x - 2); f(2 + 1e-6)', der: '5' },
+  { entrada: '2.1', donde: '(x³−27)/(x²−9), x→3', izq: 'f(x) = (x^3 - 27)/(x^2 - 9); f(3 + 1e-6)', der: '9/2' },
+  { entrada: '2.1', donde: '(√(x+4)−2)/x, x→0', izq: 'f(x) = (sqrt(x + 4) - 2)/x; f(1e-6)', der: '1/4' },
+  { entrada: '2.1', donde: '(1/x−1/3)/(x−3), x→3', izq: 'f(x) = (1/x - 1/3)/(x - 3); f(3 + 1e-6)', der: '-1/9' },
+  { entrada: '2.1', donde: 'Ejemplo, x→−1', izq: 'f(x) = (x^2 - x - 2)/(x^2 + 3x + 2); f(-1 + 1e-6)', der: '-3' },
+  // FIN
 ]
 
 describe('verificaciones numéricas de los ejemplos', () => {
   it.each(VERIFICACIONES.map((v) => [`${v.entrada} · ${v.donde}`, v]))('%s', (_n, v) => {
-    const a = Number(evaluate(v.izq))
-    const b = Number(evaluate(v.der))
+    // "f(x) = …; f(2.000001)" devuelve un ResultSet: se toma el último valor.
+    const valor = (expr: string) => {
+      const r = evaluate(expr) as unknown
+      const entradas = (r as { entries?: unknown[] })?.entries
+      return Number(entradas ? entradas[entradas.length - 1] : r)
+    }
+    const a = valor(v.izq)
+    const b = valor(v.der)
     expect(Math.abs(a - b)).toBeLessThan(1e-4)
   })
 })

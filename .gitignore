@@ -4,3 +4,4 @@ dist
 
 # Talleres y solucionarios del curso: solo referencia local, no se publican
 referencia/
+*.tsbuildinfo

@@ -3,6 +3,21 @@
 
 :root {
   color-scheme: light dark;
+  /* Series de la gráfica de progreso (paleta categórica validada: azul y naranja) */
+  --serie-1: #2a78d6;
+  --serie-2: #eb6834;
+  --superficie: var(--color-stone-50);
+  --rejilla: var(--color-stone-200);
+  --cruz: var(--color-stone-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --serie-1: #3987e5;
+    --serie-2: #d95926;
+    --superficie: var(--color-stone-950);
+    --rejilla: var(--color-stone-800);
+    --cruz: var(--color-stone-500);
+  }
 }
 
 /* Fórmulas largas: scroll horizontal dentro de su caja, nunca desborde. */

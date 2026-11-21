@@ -38,6 +38,14 @@ Regla aplicada:
 - En las tablas, las barras de valor absoluto se escriben con `\lvert … \rvert` porque `|` parte las columnas.
 - Los montos en pesos quedaron como texto normal en la prosa y como fórmula dentro de las ecuaciones.
 
+## Fase 2 — revisada el 20 de noviembre (✅ todo aceptado tal como está)
+
+- **Atrasada** = su día del plan ya pasó y **no está marcada como pasada al cuaderno** (el semáforo no cuenta).
+- **Punto de partida** en Mi progreso = cómo estabas al final del **primer día en que marcaste algo** (semáforo o cuaderno). Antes de eso no hay registro.
+- **Tocar otra vez** el semáforo activo lo quita (vuelve a "sin semáforo") y eso también queda en el historial.
+- **Importar** reemplaza todo el progreso del navegador (pide confirmación antes); no mezcla.
+- Para ver la página Hoy de otro día: `#/?hoy=2026-11-23` (la fecha sale marcada como "simulada").
+
 ## Para la Fase 4
 
 - Revisar los ejercicios de **Practica** de la Unidad 1 contra los talleres de `referencia/` (regla 1). En la Fase 1 no se compararon porque el contenido ya venía escrito; por ejemplo, 1.2 Practica 3 (parábola por vértice y punto) se parece en forma al TF 24a.

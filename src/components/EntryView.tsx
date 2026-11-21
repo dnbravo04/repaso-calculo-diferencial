@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router'
 import Markdown from './Markdown'
+import ControlesEntrada from './ControlesEntrada'
+import DiloConTusPalabras from './DiloConTusPalabras'
 import { disponible, obtenerEntrada } from '../lib/contenido'
+import { partirPractica } from '../lib/markdown'
 import { INDICE, etiquetaEntrada } from '../lib/indice'
 
 const slug = (s: string) =>
@@ -14,6 +17,18 @@ const slug = (s: string) =>
 
 const fechaLarga = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' })
+
+/** Practica: la pregunta "Dilo con tus palabras", el textarea justo debajo y luego los ejercicios. */
+function Practica({ id, cuerpo }: { id: string; cuerpo: string }) {
+  const { pregunta, resto } = partirPractica(cuerpo)
+  return (
+    <div className="contenido prose prose-stone dark:prose-invert max-w-none">
+      {pregunta && <Markdown>{pregunta}</Markdown>}
+      <DiloConTusPalabras key={id} id={id} />
+      {resto && <Markdown>{resto}</Markdown>}
+    </div>
+  )
+}
 
 export default function EntryView() {
   const { id = '' } = useParams()
@@ -49,7 +64,8 @@ export default function EntryView() {
         <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">
           Taller: {entrada.taller} · Plan: {fechaLarga(entrada.plan)}
         </p>
-        <nav aria-label="Secciones" className="mt-3 flex flex-wrap gap-2 print:hidden">
+        <ControlesEntrada id={entrada.id} />
+        <nav aria-label="Secciones" className="mt-4 flex flex-wrap gap-2 print:hidden">
           {entrada.secciones.map((s) => (
             <a
               key={s.titulo}
@@ -75,9 +91,13 @@ export default function EntryView() {
       {entrada.secciones.map((s) => (
         <section key={s.titulo} id={slug(s.titulo)} className="mb-10 scroll-mt-20">
           <h2 className="mb-3 text-xl font-bold text-teal-800 dark:text-teal-300">{s.titulo}</h2>
-          <div className="contenido prose prose-stone dark:prose-invert max-w-none">
-            <Markdown>{s.cuerpo}</Markdown>
-          </div>
+          {s.titulo === 'Practica' ? (
+            <Practica id={entrada.id} cuerpo={s.cuerpo} />
+          ) : (
+            <div className="contenido prose prose-stone dark:prose-invert max-w-none">
+              <Markdown>{s.cuerpo}</Markdown>
+            </div>
+          )}
         </section>
       ))}
 

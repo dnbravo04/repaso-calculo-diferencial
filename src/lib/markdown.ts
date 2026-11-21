@@ -60,6 +60,20 @@ export function parsearEntrada(md: string): EntradaParseada {
   return { meta, intro: intro.join('\n').trim(), secciones }
 }
 
+/**
+ * Parte la sección Practica en el párrafo "Dilo con tus palabras: …" y el resto.
+ * Si no encuentra ese párrafo, todo queda en `resto` (y el textarea va arriba).
+ */
+export function partirPractica(cuerpo: string): { pregunta: string; resto: string } {
+  const parrafos = cuerpo.split(/\n\s*\n/)
+  const i = parrafos.findIndex((p) => /^\s*Dilo con tus palabras/i.test(p))
+  if (i < 0) return { pregunta: '', resto: cuerpo }
+  return {
+    pregunta: parrafos.slice(0, i + 1).join('\n\n').trim(),
+    resto: parrafos.slice(i + 1).join('\n\n').trim(),
+  }
+}
+
 /** Quita bloques de código cercados (```...```), que no son matemática. */
 export function quitarCodigo(md: string): string {
   return md.replace(/^(```|~~~)[\s\S]*?^\1\s*$/gm, '')

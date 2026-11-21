@@ -53,6 +53,13 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '2.1', donde: '(√(x+4)−2)/x, x→0', izq: 'f(x) = (sqrt(x + 4) - 2)/x; f(1e-6)', der: '1/4' },
   { entrada: '2.1', donde: '(1/x−1/3)/(x−3), x→3', izq: 'f(x) = (1/x - 1/3)/(x - 3); f(3 + 1e-6)', der: '-1/9' },
   { entrada: '2.1', donde: 'Ejemplo, x→−1', izq: 'f(x) = (x^2 - x - 2)/(x^2 + 3x + 2); f(-1 + 1e-6)', der: '-3' },
+  // 2.2
+  { entrada: '2.2', donde: '(x²+2x)/|x+2|, x→−2⁻', izq: 'f(x) = (x^2 + 2x)/abs(x + 2); f(-2 - 1e-6)', der: '2' },
+  { entrada: '2.2', donde: '(x²+2x)/|x+2|, x→−2⁺', izq: 'f(x) = (x^2 + 2x)/abs(x + 2); f(-2 + 1e-6)', der: '-2' },
+  { entrada: '2.2', donde: 'parámetro a = 1', izq: '1*2 + 1', der: '2^2 - 1' },
+  { entrada: '2.2', donde: 'piso, x→2⁻', izq: 'floor(2 - 1e-6)', der: '1' },
+  { entrada: '2.2', donde: 'q, x→1⁻', izq: '(1 - 1e-6)^2 + 2', der: '3' },
+  { entrada: '2.2', donde: 'q, x→1⁺', izq: '5 - (1 + 1e-6)', der: '4' },
   // FIN
 ]
 

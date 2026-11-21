@@ -240,7 +240,7 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.7', donde: 'Ejemplo x₂', izq: '2.1 - 0.061/11.23', der: '2.0945681' },
   { entrada: '4.7', donde: 'Ejemplo raíz', izq: 'x = 2.0945515; x^3 - 2x - 5', der: '0' },
   { entrada: '4.7', donde: 'tangente en 2 corta en 2,1', izq: '-1 + 10*(2.1 - 2)', der: '0' },
-  { entrada: '4.7', donde: 'gráfica: f(1,7) ≈ −3,49', izq: 'round(1.7^3 - 2*1.7 - 5, 2)', der: '-3.49' },
+  { entrada: '4.7', donde: 'gráfica: mínimo ≈ −6,09 en √(2/3)', izq: 'x = sqrt(2/3); round(x^3 - 2x - 5, 2)', der: '-6.09' },
   { entrada: '4.7', donde: 'x³ − x desde 0,5 va a −1', izq: 'x = 0.5; x - (x^3 - x)/(3x^2 - 1)', der: '-1' },
   // 4.8
   { entrada: '4.8', donde: '(eˣ−1−x)/x² → 1/2', izq: 'f(x) = (exp(x) - 1 - x)/x^2; f(1e-4)', der: '1/2' },

@@ -40,6 +40,14 @@ describe('bloques grafica', () => {
     for (const p of g.puntos ?? []) if (p.etiqueta) expect(() => compila(p.etiqueta!), p.etiqueta).not.toThrow()
   })
 
+  it.each(bloques.map((b) => [b.id, b.json]))('%s: la vista incluye el origen, para que se vean los dos ejes con sus números', (_id, json) => {
+    const g = JSON.parse(json) as GraficaSpec
+    const [x0, x1] = g.vista.x.map(num)
+    const [y0, y1] = g.vista.y.map(num)
+    expect(x0 <= 0 && x1 >= 0, `x: [${x0}, ${x1}]`).toBe(true)
+    expect(y0 <= 0 && y1 >= 0, `y: [${y0}, ${y1}]`).toBe(true)
+  })
+
   it.each(bloques.map((b) => [b.id, b.json]))('%s: la descripción cubre lo que pide la regla 5', (_id, json) => {
     const { descripcion: d } = JSON.parse(json) as GraficaSpec
     expect(d).toMatch(/eje horizontal/i)

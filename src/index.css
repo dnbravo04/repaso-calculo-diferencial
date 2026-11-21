@@ -131,3 +131,31 @@
 .explorador .MafsView foreignObject > div {
   font-size: 0.82em !important;
 }
+
+/* Gráficas pequeñas (Hoy, Mi progreso, índice).
+   Semáforo = paleta de estado (siempre junto a su emoji y su nombre).
+   Actividad = rampa ordinal de un solo azul, validada contra la superficie clara y la oscura. */
+:root {
+  --sem-verde: #0ca30c;
+  --sem-amarillo: #fab219;
+  --sem-rojo: #d03b3b;
+  --sem-nada: var(--color-stone-200);
+  --cuaderno: var(--serie-2);
+  --cuaderno-pista: color-mix(in oklab, var(--serie-2) 18%, white);
+  --act-0: var(--color-stone-100);
+  --act-1: #86b6ef;
+  --act-2: #3987e5;
+  --act-3: #1c5cab;
+  --act-4: #0d366b;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sem-nada: var(--color-stone-700);
+    --cuaderno-pista: color-mix(in oklab, var(--serie-2) 25%, var(--color-stone-900));
+    --act-0: var(--color-stone-800);
+    --act-1: #184f95;
+    --act-2: #2a78d6;
+    --act-3: #5598e7;
+    --act-4: #9ec5f4;
+  }
+}

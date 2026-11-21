@@ -2,7 +2,13 @@ import { useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { useProgreso } from '../lib/almacen'
 import { diasEntre, fechaLocal } from '../lib/progreso'
+import { INDICE } from '../lib/indice'
+import { PRIMER_DIA, contar, racha } from '../lib/resumen'
+import Anillo from './visual/Anillo'
+import BarraSemaforo, { LeyendaSemaforo } from './visual/BarraSemaforo'
+import CalendarioPlan from './visual/CalendarioPlan'
 import {
+  DIA_FINAL,
   diasParaFinal,
   entradasAtrasadas,
   entradasDeHoy,
@@ -32,6 +38,11 @@ export default function Hoy() {
   const proximo = deHoy.length === 0 ? proximoDia(hoy) : null
   const repaso = esDiaDeRepaso(hoy)
   const rojas = entradasEnRojo(progreso)
+  const conteo = contar(INDICE, progreso)
+  const rachaActual = racha(progreso, hoy)
+  const totalDias = diasEntre(PRIMER_DIA, DIA_FINAL) + 1
+  const diaDelPlan = Math.min(totalDias, Math.max(1, diasEntre(PRIMER_DIA, hoy) + 1))
+  const avancePlan = Math.round((diaDelPlan / totalDias) * 100)
 
   return (
     <div>
@@ -41,16 +52,49 @@ export default function Hoy() {
       </p>
       <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Hoy</h1>
 
-      <div className="mt-4 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
-        {dias > 1 && (
-          <p className="text-lg">
-            Faltan <strong className="text-3xl tabular-nums">{dias}</strong> días para el final.
+      <div className="mt-4 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+        <div className="flex flex-wrap items-center justify-between gap-6">
+          <div className="min-w-0">
+            {dias > 1 && (
+              <p className="text-lg">
+                Faltan
+                <strong className="mx-2 align-[-0.1em] text-6xl font-bold leading-none text-teal-700 dark:text-teal-400">{dias}</strong>
+                días para el final
+              </p>
+            )}
+            {dias === 1 && <p className="text-2xl">El final es <strong>mañana</strong>.</p>}
+            {dias === 0 && <p className="text-2xl">El final es <strong>hoy</strong>.</p>}
+            {dias < 0 && <p className="text-2xl">El final ya pasó.</p>}
+            <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">Viernes 11 de diciembre de 2026, 2 p. m.</p>
+            {dias >= 0 && (
+              <div className="mt-3 max-w-xs">
+                <div className="h-2 rounded-full bg-stone-200 dark:bg-stone-700" aria-hidden="true">
+                  <div className="h-full rounded-full bg-teal-600 dark:bg-teal-500" style={{ width: `${avancePlan}%` }} />
+                </div>
+                <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+                  Día {diaDelPlan} de {totalDias} del plan
+                </p>
+              </div>
+            )}
+            {rachaActual > 0 && (
+              <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900 dark:bg-amber-950 dark:text-amber-100">
+                <span aria-hidden="true">🔥</span> Racha de {rachaActual} {rachaActual === 1 ? 'día' : 'días'} estudiando
+              </p>
+            )}
+          </div>
+          <Anillo valor={conteo.cuaderno} total={conteo.total} rotulo="del curso en el cuaderno" />
+        </div>
+
+        <div className="mt-5 border-t border-stone-200 pt-4 dark:border-stone-800">
+          <p className="mb-2 text-sm font-semibold">
+            Tu semáforo{' '}
+            <span className="font-normal text-stone-500 dark:text-stone-400">
+              · {conteo.total - conteo.nada} de {conteo.total} entradas marcadas
+            </span>
           </p>
-        )}
-        {dias === 1 && <p className="text-lg">El final es <strong>mañana</strong>.</p>}
-        {dias === 0 && <p className="text-lg">El final es <strong>hoy</strong>.</p>}
-        {dias < 0 && <p className="text-lg">El final ya pasó.</p>}
-        <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">Viernes 11 de diciembre de 2026, 2 p. m.</p>
+          <BarraSemaforo conteo={conteo} alto="alta" nombre="Semáforo de todo el curso" />
+          <LeyendaSemaforo conteo={conteo} />
+        </div>
       </div>
 
       {repaso && (
@@ -88,6 +132,14 @@ export default function Hoy() {
           )}
         </section>
       )}
+
+      <section className="mt-8">
+        <h2 className="mb-1 text-lg font-bold">Tu plan, día a día</h2>
+        <p className="mb-3 text-sm text-stone-600 dark:text-stone-400">
+          Pasa el dedo o el mouse por un día para ver qué toca; tócalo para abrir su primera entrada.
+        </p>
+        <CalendarioPlan hoy={hoy} progreso={progreso} />
+      </section>
 
       {atrasadas.length > 0 && (
         <section className="mt-8">

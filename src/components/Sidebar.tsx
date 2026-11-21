@@ -6,6 +6,8 @@ import { estadoDe } from '../lib/progreso'
 import { entradasEnRojo } from '../lib/plan'
 import Senal from './Senal'
 import Cuenta from './Cuenta'
+import BarraSemaforo from './visual/BarraSemaforo'
+import { contar } from '../lib/resumen'
 
 const claseItem = (activo: boolean) =>
   `flex items-start gap-2 rounded-md px-3 py-1.5 leading-snug ${
@@ -56,6 +58,13 @@ export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
           <h2 className="mb-1 px-3 text-xs font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">
             {g.nombre}
           </h2>
+          <div className="mb-2 px-3">
+            <BarraSemaforo
+              conteo={contar(INDICE.filter((e) => e.unidad === g.unidad), progreso)}
+              alto="mini"
+              nombre={`Semáforo de ${g.nombre}`}
+            />
+          </div>
           <ul>
             {INDICE.filter((e) => e.unidad === g.unidad).map((e) => {
               const ok = disponible(e.id)

@@ -4,6 +4,9 @@ import { useCuenta } from '../lib/cuenta'
 import { INDICE } from '../lib/indice'
 import { SEMAFOROS, estadoDe, exportar, fechaLocal, importar, serieDiaria } from '../lib/progreso'
 import GraficaProgreso from './GraficaProgreso'
+import { actividadPorDia, contar, porUnidad, racha } from '../lib/resumen'
+import BarraSemaforo, { LeyendaSemaforo } from './visual/BarraSemaforo'
+import CalendarioActividad from './visual/CalendarioActividad'
 
 export default function MiProgreso() {
   const progreso = useProgreso()
@@ -20,6 +23,8 @@ export default function MiProgreso() {
   const serie = serieDiaria(progreso, hoy)
   const conteo = (v: string) => INDICE.filter((e) => estadoDe(progreso, e.id).semaforo === v).length
   const enCuaderno = INDICE.filter((e) => estadoDe(progreso, e.id).cuaderno).length
+  const rachaActual = racha(progreso, hoy)
+  const actividad = actividadPorDia(progreso)
   const inicio = serie[0]
   const actual = serie[serie.length - 1]
 
@@ -75,7 +80,6 @@ export default function MiProgreso() {
         </div>
       </section>
       <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">De {INDICE.length} entradas del curso.</p>
-
       {inicio && actual && serie.length > 1 && (
         <p className="mt-4">
           Desde tu punto de partida ({inicio.verdes} en 🟢, {inicio.cuaderno} en el cuaderno) llevas{' '}
@@ -83,6 +87,52 @@ export default function MiProgreso() {
           <strong>{actual.cuaderno - inicio.cuaderno >= 0 ? '+' : ''}{actual.cuaderno - inicio.cuaderno}</strong> en el cuaderno.
         </p>
       )}
+
+      <section className="mt-8">
+        <h2 className="mb-1 text-lg font-bold">Por unidad</h2>
+        <p className="mb-3 text-sm text-stone-600 dark:text-stone-400">Cada barra es una unidad partida según su semáforo.</p>
+        <LeyendaSemaforo conteo={contar(INDICE, progreso)} />
+        <ul className="mt-4 grid gap-4">
+          {porUnidad(progreso).map(({ grupo, conteo }) => (
+            <li key={grupo.unidad}>
+              <div className="mb-1.5 flex items-baseline justify-between gap-3 text-sm">
+                <span className="min-w-0 truncate font-medium">{grupo.nombre}</span>
+                <span className="shrink-0 text-xs text-stone-500 dark:text-stone-400">
+                  🟢 {conteo.verde}/{conteo.total} · ✎ {conteo.cuaderno}/{conteo.total}
+                </span>
+              </div>
+              <BarraSemaforo conteo={conteo} alto="fina" nombre={grupo.nombre} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="mb-1 text-lg font-bold">Tu constancia</h2>
+        <p className="mb-3 text-sm text-stone-600 dark:text-stone-400">
+          Cada cuadrito es un día; más oscuro = más cambios de semáforo o de cuaderno ese día.
+        </p>
+        <div className="mb-4 grid grid-cols-3 gap-3">
+          <div className="rounded-xl border border-stone-200 bg-white p-3 dark:border-stone-800 dark:bg-stone-900">
+            <p className="text-sm text-stone-600 dark:text-stone-400">🔥 Racha</p>
+            <p className="text-2xl font-bold">
+              {rachaActual} <span className="text-sm font-normal">{rachaActual === 1 ? 'día' : 'días'}</span>
+            </p>
+          </div>
+          <div className="rounded-xl border border-stone-200 bg-white p-3 dark:border-stone-800 dark:bg-stone-900">
+            <p className="text-sm text-stone-600 dark:text-stone-400">📅 Días activos</p>
+            <p className="text-2xl font-bold">{actividad.size}</p>
+          </div>
+          <div className="rounded-xl border border-stone-200 bg-white p-3 dark:border-stone-800 dark:bg-stone-900">
+            <p className="text-sm text-stone-600 dark:text-stone-400">✏️ Cambios</p>
+            <p className="text-2xl font-bold">{progreso.historial.length}</p>
+          </div>
+        </div>
+        <div className="max-w-md">
+          <CalendarioActividad hoy={hoy} progreso={progreso} />
+        </div>
+      </section>
+
 
       <section className="mt-8">
         <h2 className="mb-3 text-lg font-bold">A lo largo del tiempo</h2>

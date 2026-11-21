@@ -114,6 +114,14 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.3', donde: 'cociente (2x−1)/(x²+3) en x = 1', izq: 'f(x) = (2x - 1)/(x^2 + 3); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '(-2 + 2 + 6)/16' },
   { entrada: '3.3', donde: "Ejemplo f'(1) = 3/4", izq: 'f(x) = (x^3 - 2x)/(x + 1); (f(1.0001) - f(0.9999))/0.0002', der: '3/4' },
   { entrada: '3.3', donde: 'Ejemplo: tangente pasa por (1, f(1))', izq: '3/4*1 - 5/4', der: '(1 - 2)/(1 + 1)' },
+  // 3.4
+  { entrada: '3.4', donde: "((3x²−5)⁴)' en x = 1", izq: 'f(x) = (3x^2 - 5)^4; (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '24*1*(3 - 5)^3' },
+  { entrada: '3.4', donde: "(√(x³+2x))' en x = 1", izq: 'f(x) = sqrt(x^3 + 2x); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '5/(2*sqrt(3))' },
+  { entrada: '3.4', donde: "(1/(4−x²)³)' en x = 1", izq: 'f(x) = 1/(4 - x^2)^3; (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '6/3^4' },
+  { entrada: '3.4', donde: "(e^√x)' en x = 4", izq: 'f(x) = exp(sqrt(x)); (f(4 + 1e-6) - f(4 - 1e-6))/2e-6', der: 'exp(2)/4' },
+  { entrada: '3.4', donde: 'tres capas en x = 1', izq: 'f(x) = sqrt(1 + (2x - 1)^5); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '5/sqrt(2)' },
+  { entrada: '3.4', donde: 'producto con cadena en x = 1', izq: 'f(x) = x^2 (1 - 3x)^4; (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '2*1*(-2)^3*(1 - 9)' },
+  { entrada: '3.4', donde: "Ejemplo y'(0) = −3/8", izq: 'f(x) = ((x - 1)/(x + 2))^4; (f(0.0001) - f(-0.0001))/0.0002', der: '-3/8' },
   // FIN
 ]
 

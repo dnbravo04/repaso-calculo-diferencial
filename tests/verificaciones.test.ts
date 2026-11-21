@@ -168,6 +168,15 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.10', donde: 'Ejemplo s(1) = 5', izq: '2 - 9 + 12', der: '5' },
   { entrada: '3.10', donde: 'Ejemplo a(t) = s\'\'(t) en t = 1', izq: 's(t) = 2t^3 - 9t^2 + 12t; (s(1 + 1e-4) - 2 s(1) + s(1 - 1e-4))/1e-8', der: '-6' },
   { entrada: '3.10', donde: 'Ejemplo v(1,4) = −1,44', izq: '6 (1.4 - 1)(1.4 - 2)', der: '-1.44' },
+  // 3.11
+  { entrada: '3.11', donde: "|x−2|: f'₊(2) = 1", izq: '(abs(2 + 1e-6 - 2) - 0)/1e-6', der: '1' },
+  { entrada: '3.11', donde: "g'₋(0) = 0", izq: '((-1e-6)^2 + 1 - 1)/(-1e-6)', der: '0' },
+  { entrada: '3.11', donde: "g'₊(0) = 3", izq: '((1 + 3e-6) - 1)/1e-6', der: '3' },
+  { entrada: '3.11', donde: 'parámetros a = 2, b = −1: continuidad', izq: '1^2', der: '2*1 - 1' },
+  { entrada: '3.11', donde: "Ejemplo h'₊(2) ≈ 4", izq: 'h(x) = abs(x^2 - 4); (h(2 + 1e-6) - h(2))/1e-6', der: '4' },
+  { entrada: '3.11', donde: "Ejemplo h'₋(2) ≈ −4", izq: 'h(x) = abs(x^2 - 4); (h(2 - 1e-6) - h(2))/(-1e-6)', der: '-4' },
+  { entrada: '3.11', donde: "Ejemplo h'₋(−2) ≈ −4", izq: 'h(x) = abs(x^2 - 4); (h(-2 - 1e-6) - h(-2))/(-1e-6)', der: '-4' },
+  { entrada: '3.11', donde: '|x|³ derivable en 0', izq: 'abs(1e-4)^3/1e-4', der: '0' },
   // FIN
 ]
 

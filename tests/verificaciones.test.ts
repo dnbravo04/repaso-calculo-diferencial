@@ -222,6 +222,14 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.5', donde: 'Ejemplo f(±2) = −16', izq: '2^4 - 8*2^2', der: '-16' },
   { entrada: '4.5', donde: 'Ejemplo inflexión y = −80/9', izq: 'x = 2/sqrt(3); x^4 - 8x^2', der: '-80/9' },
   { entrada: '4.5', donde: "Ejemplo f''(2/√3) = 0", izq: '12 * (2/sqrt(3))^2 - 16', der: '0' },
+  // 4.6
+  { entrada: '4.6', donde: "ln(x²+1): f''(1) = 0", izq: 'f(x) = log(x^2 + 1); (f(1 + 1e-4) - 2 f(1) + f(1 - 1e-4))/1e-8', der: '0' },
+  { entrada: '4.6', donde: 'x³/(x²−3) = x + 3x/(x²−3)', izq: 'x = 5; x^3/(x^2 - 3) - (x + 3x/(x^2 - 3))', der: '0' },
+  { entrada: '4.6', donde: "f'(3) = 0", izq: 'f(x) = x^3/(x^2 - 3); (f(3 + 1e-6) - f(3 - 1e-6))/2e-6', der: '0' },
+  { entrada: '4.6', donde: "f'' = 6x(x²+9)/(x²−3)³ en x = 2", izq: 'f(x) = x^3/(x^2 - 3); (f(2 + 1e-4) - 2 f(2) + f(2 - 1e-4))/1e-8', der: '6*2*(4 + 9)/(4 - 3)^3' },
+  { entrada: '4.6', donde: 'Ejemplo f(3) = 9/2', izq: '27/(9 - 3)', der: '9/2' },
+  { entrada: '4.6', donde: 'Ejemplo f(2,9) ≈ 4,5081', izq: 'round(2.9^3/(2.9^2 - 3), 4)', der: '4.5081' },
+  { entrada: '4.6', donde: 'Ejemplo f(3,1) ≈ 4,5070', izq: 'round(3.1^3/(3.1^2 - 3), 4)', der: '4.507' },
   // FIN
 ]
 

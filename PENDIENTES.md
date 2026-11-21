@@ -95,3 +95,11 @@ No hay coincidencias: ningún ejemplo ni ejercicio de práctica usa la misma fun
 - **$\lim$ sin tilde.** KaTeX escribe "lim"; Stewart en español escribe "lím". Se puede cambiar con un macro si lo prefieres.
 - **Gráficas de la Fase 4** (19): todas incluyen el origen, para que se vean los dos ejes con sus números. Una prueba nueva lo exige en todas las entradas.
 - **Errores corregidos durante la escritura**: cuatro decimales calculados de cabeza estaban mal (3.7, 3.8, 4.6 y 4.7). Uno lo atrapó una prueba y los otros tres los encontré al recalcular con Node. Además, la prueba de la regla 5 detectó que a dos descripciones de 2.5 les faltaba la imagen. Todos esos valores quedaron como verificaciones con `mathjs`.
+
+## Fase 5 — publicada el 20 de noviembre
+
+- **Sitio:** https://dnbravo04.github.io/repaso-calculo-diferencial/
+- **Repositorio:** https://github.com/dnbravo04/repaso-calculo-diferencial (público).
+- Cada push a `main` corre las pruebas y el build en GitHub Actions y, si todo pasa, vuelve a publicar. Si una prueba falla, el sitio se queda en la versión anterior.
+- `CLAUDE.md`, `bitacora-extendida-contenido.md` y `referencia/` **no** están en el repositorio (tienen datos personales o material del curso). Siguen en tu disco; git los ignora.
+- **Ojo con el progreso:** el semáforo, el cuaderno y "Dilo con tus palabras" se guardan por sitio. Lo que marques en `localhost` no aparece en `github.io`. Para pasarlo, usa **Mi progreso → Descargar progreso (JSON)** en uno e **Importar** en el otro.

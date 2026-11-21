@@ -252,6 +252,18 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '4.8', donde: 'x^{1/x} → 1', izq: '(1e12)^(1/1e12)', der: '1' },
   { entrada: '4.8', donde: 'Ejemplo → 1/6', izq: 'f(x) = (exp(x) - 1 - x - x^2/2)/x^3; f(0.001)', der: '1/6' },
   { entrada: '4.8', donde: 'Trampa (x + sen x)/x → 1', izq: 'f(x) = (x + sin(x))/x; f(1e6)', der: '1' },
+  // 4.9
+  { entrada: '4.9', donde: "lote: L'(30) = 0", izq: '2 - 1800/30^2', der: '0' },
+  { entrada: '4.9', donde: 'lote: L(30) = 120', izq: '2*30 + 1800/30', der: '120' },
+  { entrada: '4.9', donde: 'distancia: x = 5/2', izq: '2*(5/2 - 3) + 1', der: '0' },
+  { entrada: '4.9', donde: 'distancia √11/2', izq: 'sqrt((5/2 - 3)^2 + 5/2)', der: 'sqrt(11)/2' },
+  { entrada: '4.9', donde: 'segmento perpendicular a la tangente', izq: '(-sqrt(5/2)/(1/2)) * (1/(2 sqrt(5/2)))', der: '-1' },
+  { entrada: '4.9', donde: 'lata r', izq: 'round(cbrt(0.001/(2 pi)), 4)', der: '0.0542' },
+  { entrada: '4.9', donde: "lata A'(r) = 0", izq: 'r = cbrt(0.001/(2 pi)); 4 pi r - 0.002/r^2', der: '0' },
+  { entrada: '4.9', donde: 'lata h = 2r', izq: 'r = cbrt(0.001/(2 pi)); 0.001/(pi r^2) - 2r', der: '0' },
+  { entrada: '4.9', donde: 'lata A mínima', izq: 'r = cbrt(0.001/(2 pi)); round(2 pi r^2 + 0.002/r, 5)', der: '0.05536' },
+  { entrada: '4.9', donde: 'lata A(0,04)', izq: 'round(2 pi 0.04^2 + 0.002/0.04, 5)', der: '0.06005' },
+  { entrada: '4.9', donde: 'Trampa x³ − 3x: f(3) = 18', izq: '3^3 - 3*3', der: '18' },
   // FIN
 ]
 

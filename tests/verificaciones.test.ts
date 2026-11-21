@@ -97,6 +97,16 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.1', donde: 'velocidad en t = 2', izq: 's(t) = 4.9t^2; (s(2 + 1e-7) - s(2))/1e-7', der: '19.6' },
   { entrada: '3.1', donde: "Ejemplo f'(1) = 1/4", izq: '(sqrt(4.001) - 2)/0.001', der: '0.24998' },
   { entrada: '3.1', donde: 'pendiente secante h = 2', izq: '(sqrt(6) - 2)/2', der: '0.2247' },
+  // 3.2
+  { entrada: '3.2', donde: "f'(2) para x³−2x+1", izq: 'f(x) = x^3 - 2x + 1; (f(2 + 1e-7) - f(2 - 1e-7))/2e-7', der: '10' },
+  { entrada: '3.2', donde: 'tangente y = 10x − 15 pasa por (2, 5)', izq: '10*2 - 15', der: '5' },
+  { entrada: '3.2', donde: 'normal pasa por (2, 5)', izq: '-2/10 + 26/5', der: '5' },
+  { entrada: '3.2', donde: 'pendiente 2 en x = 3', izq: 'f(x) = x^2 - 4x + 1; (f(3 + 1e-7) - f(3 - 1e-7))/2e-7', der: '2' },
+  { entrada: '3.2', donde: 'y = 2x − 8 pasa por (3, −2)', izq: '2*3 - 8', der: '3^2 - 4*3 + 1' },
+  { entrada: '3.2', donde: 'parámetros a = 2, b = 1', izq: '2*1^2 + 1', der: '4*1 - 1' },
+  { entrada: '3.2', donde: 'Ejemplo: y = 4x − 3 toca en (2, 5)', izq: '4*2 - 3', der: '2^2 + 1' },
+  { entrada: '3.2', donde: 'Ejemplo: y = −4x − 3 toca en (−2, 5)', izq: '-4*(-2) - 3', der: '(-2)^2 + 1' },
+  { entrada: '3.2', donde: 'Trampa: x³ y 3x − 2 en x = −2', izq: '(-2)^3', der: '3*(-2) - 2' },
   // FIN
 ]
 

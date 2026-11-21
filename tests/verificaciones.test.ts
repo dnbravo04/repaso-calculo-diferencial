@@ -76,6 +76,19 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '2.4', donde: 'bisección f(0,75)', izq: '0.75^3 + 0.75 - 1', der: '0.171875' },
   { entrada: '2.4', donde: 'raíz de x³+x−1 en (0,625; 0,75)', izq: 'f(x) = x^3 + x - 1; f(0.625) * f(0.75) < 0', der: '1' },
   { entrada: '2.4', donde: 'removible: lím en 2', izq: 'f(x) = (x^2 - 4)/(x^2 - x - 2); f(2 + 1e-6)', der: '4/3' },
+  // 2.5
+  { entrada: '2.5', donde: '(4x²−x+1)/(2x²+5), x→∞', izq: 'f(x) = (4x^2 - x + 1)/(2x^2 + 5); f(1e7)', der: '2' },
+  { entrada: '2.5', donde: '√(9x²+1)/(2x−3), x→−∞', izq: 'f(x) = sqrt(9x^2 + 1)/(2x - 3); f(-1e7)', der: '-3/2' },
+  { entrada: '2.5', donde: '√(x+3)−√x, x→∞', izq: 'sqrt(1e10 + 3) - sqrt(1e10)', der: '0' },
+  { entrada: '2.5', donde: '(2eˣ+1)/(eˣ−3), x→∞', izq: 'f(x) = (2exp(x) + 1)/(exp(x) - 3); f(40)', der: '2' },
+  { entrada: '2.5', donde: '(2eˣ+1)/(eˣ−3), x→−∞', izq: 'f(x) = (2exp(x) + 1)/(exp(x) - 3); f(-40)', der: '-1/3' },
+  { entrada: '2.5', donde: 'división (x+2)(2x−1)+1', izq: 'f(x) = (x + 2)(2x - 1) + 1 - (2x^2 + 3x - 1); f(7)', der: '0' },
+  { entrada: '2.5', donde: 'nRT', izq: '1 * 8.314 * 300', der: '2494.2' },
+  { entrada: '2.5', donde: '(3−x)/(x−2) = −1 + 1/(x−2)', izq: 'f(x) = (3 - x)/(x - 2) - (-1 + 1/(x - 2)); f(5)', der: '0' },
+  { entrada: '2.5', donde: 'Ejemplo: f(−5) = 3', izq: '(3*(-5)^2 - 3)/((-5)^2 - (-5) - 6)', der: '3' },
+  { entrada: '2.5', donde: 'Ejemplo: f(0) = 1/2', izq: '(3*0 - 3)/(0 - 0 - 6)', der: '1/2' },
+  { entrada: '2.5', donde: 'mínimo de la rama derecha = −5 + 2√2', izq: 'f(x) = (2x^2 + 3x - 1)/(x + 2); f(-2 + 1/sqrt(2))', der: '-5 + 2*sqrt(2)' },
+  { entrada: '2.5', donde: 'extremo de la rama izquierda = (42 + 12√6)/25', izq: 'y = (42 + 12*sqrt(6))/25; 25y^2 - 84y + 36', der: '0' },
   // FIN
 ]
 

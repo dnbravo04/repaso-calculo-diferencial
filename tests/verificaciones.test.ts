@@ -60,6 +60,15 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '2.2', donde: 'piso, x→2⁻', izq: 'floor(2 - 1e-6)', der: '1' },
   { entrada: '2.2', donde: 'q, x→1⁻', izq: '(1 - 1e-6)^2 + 2', der: '3' },
   { entrada: '2.2', donde: 'q, x→1⁺', izq: '5 - (1 + 1e-6)', der: '4' },
+  // 2.3
+  { entrada: '2.3', donde: 'x cos(1/x), x→0', izq: '1e-6*cos(1/1e-6)', der: '0' },
+  { entrada: '2.3', donde: '(2+sen x)/x², x→∞', izq: '(2 + sin(1e4))/1e8', der: '0' },
+  { entrada: '2.3', donde: 'sen7x/(2x)', izq: 'sin(7e-6)/(2e-6)', der: '7/2' },
+  { entrada: '2.3', donde: 'tan x/(x + sen x)', izq: 'tan(1e-6)/(1e-6 + sin(1e-6))', der: '1/2' },
+  { entrada: '2.3', donde: 'sen(θ²)/θ', izq: 'sin((1e-4)^2)/1e-4', der: '0' },
+  { entrada: '2.3', donde: 'sen(x−1)/(x²−1)', izq: 'f(x) = sin(x - 1)/(x^2 - 1); f(1 + 1e-6)', der: '1/2' },
+  { entrada: '2.3', donde: '(1−cos x)/sen x', izq: '(1 - cos(1e-4))/sin(1e-4)', der: '0' },
+  { entrada: '2.3', donde: 'Ejemplo (x + tan2x)/sen3x', izq: 'f(x) = (x + tan(2x))/sin(3x); f(1e-4)', der: '1' },
   // FIN
 ]
 

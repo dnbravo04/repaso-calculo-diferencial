@@ -139,6 +139,15 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.6', donde: "T'(0) = −3,5 K/s", izq: 'T(t) = 293 + 70 exp(-0.05t); (T(1e-6) - T(-1e-6))/2e-6', der: '-3.5' },
   { entrada: '3.6', donde: "T'(t) = −1 en t = ln(3,5)/0,05", izq: '-3.5 exp(-0.05 * log(3.5)/0.05)', der: '-1' },
   { entrada: '3.6', donde: "Ejemplo y'(1) = e(ln 2 + 1)", izq: 'f(x) = exp(x) log(x^2 + 1); (f(1.0001) - f(0.9999))/0.0002', der: 'e * (log(2) + 1)' },
+  // 3.7
+  { entrada: '3.7', donde: "(arctan 3x)' en x = 1", izq: 'f(x) = atan(3x); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '3/10' },
+  { entrada: '3.7', donde: "(arcsen x²)' en x = 0,5", izq: 'f(x) = asin(x^2); (f(0.5 + 1e-6) - f(0.5 - 1e-6))/2e-6', der: '1/sqrt(1 - 0.0625)' },
+  { entrada: '3.7', donde: "(x² arctan x)' en x = 1", izq: 'f(x) = x^2 atan(x); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '2 atan(1) + 1/2' },
+  { entrada: '3.7', donde: "(f⁻¹)'(3) = 1/4", izq: 'f(x) = x^3 + x + 1; f(1)', der: '3' },
+  { entrada: '3.7', donde: "θ'(10) = −1/20 rad/m", izq: 't(x) = atan(10/x); (t(10 + 1e-6) - t(10 - 1e-6))/2e-6', der: '-1/20' },
+  { entrada: '3.7', donde: "Ejemplo y'(1/2) = 2", izq: 'f(x) = asin(2x - 1); (f(0.5001) - f(0.4999))/0.0002', der: '2' },
+  { entrada: '3.7', donde: 'Trampa: 1/√0,75', izq: '1/sqrt(0.75)', der: '1.1547' },
+  { entrada: '3.7', donde: 'Trampa: −csc(0,5)cot(0,5) ≈ −3,82', izq: 'round(-csc(0.5) cot(0.5), 2)', der: '-3.82' },
   // FIN
 ]
 

@@ -60,6 +60,38 @@ Regla aplicada:
 - **Explorador**: $A$ y $B$ van de $-4$ a $4$ en pasos de $\tfrac{1}{4}$ (se saltan el $0$); $C$ y $D$ en pasos de $\tfrac{1}{2}$. Con seno y coseno, $C$ va en pasos de $\tfrac{\pi}{4}$ para que los valores sigan siendo exactos.
 - **Peso**: Mafs y mathjs (~360 kB comprimidos) se descargan solo al abrir una entrada con gráfica o el explorador.
 
-## Para la Fase 4
+## Fase 4 — decisiones para revisar
 
-- Revisar los ejercicios de **Practica** de la Unidad 1 contra los talleres de `referencia/` (regla 1). En la Fase 1 no se compararon porque el contenido ya venía escrito; por ejemplo, 1.2 Practica 3 (parábola por vértice y punto) se parece en forma al TF 24a.
+### Regla 1: cómo se comparó cada entrada con su taller
+
+Antes de escribir se leyeron completos el T2, el T5, el T6, el TF y el TT. Ningún ejemplo resuelto usa la misma función ni los mismos números de un ejercicio del taller. Además, se descartaron ejemplos que, sin ser iguales, **dejaban resuelto** un ejercicio en un paso:
+
+| Entrada | Ejemplo descartado | Por qué | Se usó en cambio |
+| --- | --- | --- | --- |
+| 2.3 | $\tfrac{1 - \cos x}{x\operatorname{sen}x}$ y $\tfrac{x^2}{\operatorname{sen}^2 3x}$ | son recíprocos de T2 5d y 5f | $\tfrac{\tan x}{x + \operatorname{sen}x}$, $\tfrac{1 - \cos x}{\operatorname{sen}x}$ |
+| 2.5 | $\sqrt{x^2 + bx} - x$ y $\left(1 + \tfrac{k}{x}\right)^x$ | misma familia que T2 11w, 11y y 14i | $\sqrt{x + 3} - \sqrt{x}$; exponenciales con dos asíntotas |
+| 3.6 | $\ln\left(x^3\sqrt{x + 1}\right)$ | contiene $\ln x^3$ (T5 1e) | $\ln\tfrac{(2x + 1)^5}{\sqrt{x^2 + 1}}$ |
+| 3.8 | $x^2y + y^3 = 5$ | muy parecida a T5 23c | $x\,e^y = y + 2$ y el folio |
+| 3.10 | patrones de $\tfrac{1}{x}$ y $e^{kx}$ | dan T5 6e ($\ln\lvert x \rvert$) y 6b ($2^x$) | $\tfrac{1}{1 - x}$ y $x e^x$ |
+| 3.11 y 4.3 | $x^{2/3}$ | da la clave de T6 3 y T6 5l | $(x + 1)^{2/5}$, $\sqrt[3]{x}$, $\lvert x - 1 \rvert$ |
+| 4.4 | $\sqrt{x}$ en $[1, 9]$ | parecido a T6 2b | $\sqrt{x}$ en $[4, 16]$ |
+| 4.5 | $x e^{-x}$ | es T6 5d | $x^4 - 8x^2$ y la campana $e^{-x^2/2}$ |
+| 4.8 | $x\ln x$ y $\tfrac{x - \operatorname{sen}x}{x^3}$ | dan T6 1m y 1f | $\sqrt{x}\ln x$ y $\tfrac{e^x - 1 - x - x^2/2}{x^3}$ |
+
+Las secciones **Practica** traen ejercicios propios; algunos son del mismo **tipo** que un punto del taller (por ejemplo, rectas tangentes o un parámetro para que exista un límite), pero con otras funciones y otros números, y no están resueltos.
+
+### Unidad 1 contra el TF y el TT (pendiente de la Fase 1)
+
+No hay coincidencias: ningún ejemplo ni ejercicio de práctica usa la misma función con los mismos números que el TF o el TT. Los casos más parecidos, que **no** se cambiaron:
+
+- Parte T, T.11: $2\cos^2 x + \cos x - 1 = 0$ frente a TF 58: $2\operatorname{sen}^2 x - \operatorname{sen}x - 1 = 0$ (otra función y otros signos; el método es el mismo).
+- 1.2 Practica 3 (vértice $(3, -1)$ y pasa por $(5, 7)$) frente a TF 24 (vértice $(2, -3)$ y pasa por $(0, 5)$).
+- 1.3 Practica 3 ($f = \tfrac{2}{x - 1}$, $g = \tfrac{1}{x}$) frente a TF 34 ($f = \tfrac{1}{x - 1}$, $g = \tfrac{1}{x}$). Es el más cercano: si prefieres, lo cambio.
+- 1.6 Practica 3 ($-e^{3x - 6} + 2$) frente a TT 15 ($-e^{2(x - 2)} + 2$).
+
+### Otras decisiones
+
+- **Orden de 3.2 y 3.3.** La recta tangente (3.2) usa ya las reglas de potencia y suma de 3.3, y la entrada lo avisa.
+- **$\lim$ sin tilde.** KaTeX escribe "lim"; Stewart en español escribe "lím". Se puede cambiar con un macro si lo prefieres.
+- **Gráficas de la Fase 4** (19): todas incluyen el origen, para que se vean los dos ejes con sus números. Una prueba nueva lo exige en todas las entradas.
+- **Errores corregidos durante la escritura**: cuatro decimales calculados de cabeza estaban mal (3.7, 3.8, 4.6 y 4.7). Uno lo atrapó una prueba y los otros tres los encontré al recalcular con Node. Además, la prueba de la regla 5 detectó que a dos descripciones de 2.5 les faltaba la imagen. Todos esos valores quedaron como verificaciones con `mathjs`.

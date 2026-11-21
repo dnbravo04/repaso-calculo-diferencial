@@ -122,6 +122,14 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.4', donde: 'tres capas en x = 1', izq: 'f(x) = sqrt(1 + (2x - 1)^5); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '5/sqrt(2)' },
   { entrada: '3.4', donde: 'producto con cadena en x = 1', izq: 'f(x) = x^2 (1 - 3x)^4; (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '2*1*(-2)^3*(1 - 9)' },
   { entrada: '3.4', donde: "Ejemplo y'(0) = −3/8", izq: 'f(x) = ((x - 1)/(x + 2))^4; (f(0.0001) - f(-0.0001))/0.0002', der: '-3/8' },
+  // 3.5
+  { entrada: '3.5', donde: "(x² sen x)' en x = 1", izq: 'f(x) = x^2 sin(x); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '2 sin(1) + cos(1)' },
+  { entrada: '3.5', donde: "(cos x/(1 − sen x))' = 1/(1 − sen x) en x = 0,5", izq: 'f(x) = cos(x)/(1 - sin(x)); (f(0.5 + 1e-6) - f(0.5 - 1e-6))/2e-6', der: '1/(1 - sin(0.5))' },
+  { entrada: '3.5', donde: "(sen²3x)' = 3 sen 6x en x = 0,2", izq: 'f(x) = sin(3x)^2; (f(0.2 + 1e-6) - f(0.2 - 1e-6))/2e-6', der: '3 sin(1.2)' },
+  { entrada: '3.5', donde: "(tan √x)' en x = 1", izq: 'f(x) = tan(sqrt(x)); (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: 'sec(1)^2/2' },
+  { entrada: '3.5', donde: 'tangente horizontal en π/4', izq: 'cos(pi/4) - sin(pi/4)', der: '0' },
+  { entrada: '3.5', donde: 'Ejemplo y\'(0) = 1', izq: 'f(x) = sin(2x)/(1 + cos(x)); (f(0.0001) - f(-0.0001))/0.0002', der: '1' },
+  { entrada: '3.5', donde: "Ejemplo y'(π/2) = −2", izq: 'f(x) = sin(2x)/(1 + cos(x)); (f(pi/2 + 1e-6) - f(pi/2 - 1e-6))/2e-6', der: '-2' },
   // FIN
 ]
 

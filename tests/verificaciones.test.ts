@@ -155,6 +155,11 @@ const VERIFICACIONES: { entrada: string; donde: string; izq: string; der: string
   { entrada: '3.8', donde: 'x e^y = y + 2 en (2, 0)', izq: '2 exp(0)', der: '0 + 2' },
   { entrada: '3.8', donde: 'folio en (3,3)', izq: '3^3 + 3^3', der: '6*3*3' },
   { entrada: '3.8', donde: 'folio: y ≈ 2,98973 cumple la ecuación en x = 3,01', izq: 'y = 2.989726; y^3 - 6*3.01*y + 3.01^3', der: '0' },
+  // 3.9
+  { entrada: '3.9', donde: "producto/cociente: y'(1) = 68/125", izq: 'f(x) = (x + 1)^3 sqrt(2x - 1)/(x^2 + 4)^2; (f(1 + 1e-6) - f(1 - 1e-6))/2e-6', der: '68/125' },
+  { entrada: '3.9', donde: "(x^√x)' en x = 4", izq: 'f(x) = x^sqrt(x); (f(4 + 1e-6) - f(4 - 1e-6))/2e-6', der: '16 * (log(4) + 2)/4' },
+  { entrada: '3.9', donde: "Ejemplo (xˣ)'(2) = 4(ln 2 + 1)", izq: '(2.0001^2.0001 - 1.9999^1.9999)/0.0002', der: '4 * (log(2) + 1)' },
+  { entrada: '3.9', donde: 'mínimo de xˣ en 1/e', izq: 'log(1/e) + 1', der: '0' },
   // FIN
 ]
 
